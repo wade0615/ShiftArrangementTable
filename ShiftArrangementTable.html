@@ -8,11 +8,14 @@
 <body>
     <h1>Look at console</h1>
     <script>
-        const h = [1,1,0,1,1];
+        // const h = [1,1,0,1,1];
+        const h = {
+            schedule: [1,1,0,1,1]
+        };
         const n = [1,0,1,1,1];
         const b = [1,1,1,1,0];
 
-        const hNew = h.map(e => {return (e === 1 ? e = 'h' : e = '')});
+        const hNew = h.schedule.map(e => {return (e === 1 ? e = 'h' : e = '')});
         const nNew = n.map(e => {return (e === 1 ? e = 'n' : e = '')});
         const bNew = b.map(e => {return (e === 1 ? e = 'b' : e = '')});
 
