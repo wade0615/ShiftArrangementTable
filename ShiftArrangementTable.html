@@ -6,30 +6,27 @@
     <title>Shift Arrangement Table</title>
 </head>
 <body>
+    <h1>Look at console</h1>
     <script>
-        const a = [1,1,0];
-        const b = [1,0,1];
+        const h = [1,1,0,1,1];
+        const n = [1,0,1,1,1];
+        const b = [1,1,1,1,0];
 
-        // const aNew = a.map(e => {
-        //     if(e === 1){
-        //         return e = 'a';
-        //     }
-        //     return e = '';
-        // });
-        const aNew = a.map(e => {return (e === 1 ? e = 'a' : e = '')})
-        const bNew = b.map(e => {return (e === 1 ? e = 'b' : e = '')})
+        const hNew = h.map(e => {return (e === 1 ? e = 'h' : e = '')});
+        const nNew = n.map(e => {return (e === 1 ? e = 'n' : e = '')});
+        const bNew = b.map(e => {return (e === 1 ? e = 'b' : e = '')});
 
-        console.log(aNew);
+        console.log(hNew);
 
-        const c = {
-            '週一': `${aNew[0]}, ${bNew[0]}`,
-            '週二': `${aNew[1]}, ${bNew[1]}`,
-            '週三': `${aNew[2]}, ${bNew[2]}`,
-            '週四': `${aNew[3]}, ${bNew[3]}`,
-            '週五': `${aNew[4]}, ${bNew[4]}`
+        const ShiftTable = {
+            '週一': `${hNew[0]} ${nNew[0]} ${bNew[0]}`,
+            '週二': `${hNew[1]} ${nNew[1]} ${bNew[1]}`,
+            '週三': `${hNew[2]} ${nNew[2]} ${bNew[2]}`,
+            '週四': `${hNew[3]} ${nNew[3]} ${bNew[3]}`,
+            '週五': `${hNew[4]} ${nNew[4]} ${bNew[4]}`
         }
-        console.log(c);
-        console.table(c);
+        console.log(ShiftTable);
+        console.table(ShiftTable);
     </script>
 </body>
 </html>
