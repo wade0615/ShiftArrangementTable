@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shift Arrangement Table</title>
+</head>
+<body>
+    <script>
+        const a = [1,1,0];
+        const b = [1,0,1];
+
+        // const aNew = a.map(e => {
+        //     if(e === 1){
+        //         return e = 'a';
+        //     }
+        //     return e = '';
+        // });
+        const aNew = a.map(e => {return (e === 1 ? e = 'a' : e = '')})
+        const bNew = b.map(e => {return (e === 1 ? e = 'b' : e = '')})
+
+        console.log(aNew);
+
+        const c = {
+            '週一': `${aNew[0]}, ${bNew[0]}`,
+            '週二': `${aNew[1]}, ${bNew[1]}`,
+            '週三': `${aNew[2]}, ${bNew[2]}`,
+            '週四': `${aNew[3]}, ${bNew[3]}`,
+            '週五': `${aNew[4]}, ${bNew[4]}`
+        }
+        console.log(c);
+        console.table(c);
+    </script>
+</body>
+</html>
