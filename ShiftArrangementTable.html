@@ -13,7 +13,7 @@
         const h = [1,1,0,1,1];
         const n = [1,0,1,1,1];
         const b = [1,1,1,1,0];
-        
+
         const hNew = h.map(e => {return (e === 1 ? e = 'h' : e = '')});
         const nNew = n.map(e => {return (e === 1 ? e = 'n' : e = '')});
         const bNew = b.map(e => {return (e === 1 ? e = 'b' : e = '')});
@@ -30,28 +30,42 @@
 
 // 第二階段的做法，用陣列將整放資料包起來，再不斷用 .map 重整與建立新資料
         const data = [
-            {code: "H", schedule: [1,1,0,1,1]}, //每個物件會有一個員工代號與選擇休假的陣列
+            {code: "H", schedule: [1,1,0,1,1]}, //每個物件會有一個員工代號與選擇休假日的陣列
             {code: "N", schedule: [1,0,1,1,1]} //休假陣列用 布林值 表示
         ];
         
         const newData = data.map(data => { //建立一個新data，將布林值轉換成各員工代號
             scheduleInName = data.schedule.map(e => {return (e === 1 ? data.code : '')});
-            // console.log(schedule);
             return data = {
                 code: data.code,
                 schedule: scheduleInName
             }
         });
         console.log(newData);
+
+        // try to make NewArray = ['HN','H','N','HN']
         const ShiftTable2 = newData.map(e => {
             return e.schedule;
         })
         console.log(ShiftTable2);
         console.table(ShiftTable2);
-        const ShiftTable3 = ShiftTable2.map(function (e,index){
-            return e[index];
-        })
-        console.log(ShiftTable3);
+        // const ShiftTable3 = ShiftTable2.map(function (e,index){
+        //     return e[index];
+        // })
+
+
+        function makeShiftTable(e){
+            for(i=0; i<7; i++) {
+                ShiftTableInName[i] = e[0][i] + e[1][i];
+                // console.log(ShiftTableInName);
+            };
+            return ShiftTableInName;
+        };
+
+
+        ShiftTableInName = [];
+        ShiftTableInName = makeShiftTable(ShiftTable2);
+        console.log(ShiftTableInName);
 
     </script>
 </body>
