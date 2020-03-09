@@ -7,65 +7,47 @@
 </head>
 <body>
     <h1>Look at console</h1>
+    <!-- <script src="scripts/main.js"></script> -->
     <script>
 
-// 第一階段的做法
-        const h = [1,1,0,1,1];
-        const n = [1,0,1,1,1];
-        const b = [1,1,1,1,0];
-
-        const hNew = h.map(e => {return (e === 1 ? e = 'h' : e = '')});
-        const nNew = n.map(e => {return (e === 1 ? e = 'n' : e = '')});
-        const bNew = b.map(e => {return (e === 1 ? e = 'b' : e = '')});
-
-        const ShiftTable = {
-            '週一': `${hNew[0]} ${nNew[0]} ${bNew[0]}`,
-            '週二': `${hNew[1]} ${nNew[1]} ${bNew[1]}`,
-            '週三': `${hNew[2]} ${nNew[2]} ${bNew[2]}`,
-            '週四': `${hNew[3]} ${nNew[3]} ${bNew[3]}`,
-            '週五': `${hNew[4]} ${nNew[4]} ${bNew[4]}`
-        }
-        // console.log(ShiftTable);
-        // console.table(ShiftTable);
-
 // 第二階段的做法，用陣列將整放資料包起來，再不斷用 .map 重整與建立新資料
-        const data = [
-            {code: "H", schedule: [1,1,0,1,1]}, //每個物件會有一個員工代號與選擇休假日的陣列
-            {code: "N", schedule: [1,0,1,1,1]} //休假陣列用 布林值 表示
+        const employeeData = [
+            {code: "H", schedule: [1,1,0,0,1,1,1]}, //每個物件會有一個員工代號與選擇休假日的陣列
+            {code: "N", schedule: [1,0,1,1,0,1,1]}, //休假陣列用 布林值 表示
+            {code: "B", schedule: [1,1,1,1,1,0,0]},
+            {code: "S", schedule: [0,1,1,1,1,1,0]}
         ];
-        
-        const newData = data.map(data => { //建立一個新data，將布林值轉換成各員工代號
-            scheduleInName = data.schedule.map(e => {return (e === 1 ? data.code : '')});
+
+        const employeeData_InName = employeeData.map(data => { //建立一個新data，將布林值轉換成各員工代號
+            schedule_InName = data.schedule.map(e => {return (e === 1 ? data.code : '')});
             return data = {
                 code: data.code,
-                schedule: scheduleInName
+                schedule: schedule_InName
             }
         });
-        console.log(newData);
+        console.log(employeeData_InName);
 
-        // try to make NewArray = ['HN','H','N','HN']
-        const ShiftTable2 = newData.map(e => {
+        const employeeSchedule = employeeData_InName.map(e => { // 取出含有各員工代號的休假日陣列
             return e.schedule;
         })
-        console.log(ShiftTable2);
-        console.table(ShiftTable2);
-        // const ShiftTable3 = ShiftTable2.map(function (e,index){
-        //     return e[index];
-        // })
+        console.table(employeeSchedule);
 
-
-        function makeShiftTable(e){
+        function makeShiftTable(e){ //依照日期顯示各日可上班的員工
             for(i=0; i<7; i++) {
-                ShiftTableInName[i] = e[0][i] + e[1][i];
-                // console.log(ShiftTableInName);
+                // ShiftTable[i] = e[0][i] + e[1][i] + e[2][i];
+                employees = [];
+                for(cont=0; cont < e.length; cont++) {
+                    employees[cont] = e[cont][i];
+                    // console.log(employees);
+                }
+                ShiftTable[i] = employees.join('');
             };
-            return ShiftTableInName;
+            return ShiftTable;
         };
 
-
-        ShiftTableInName = [];
-        ShiftTableInName = makeShiftTable(ShiftTable2);
-        console.log(ShiftTableInName);
+        ShiftTable = [];
+        ShiftTable = makeShiftTable(employeeSchedule); //生成班表
+        console.log(ShiftTable);
 
     </script>
 </body>
