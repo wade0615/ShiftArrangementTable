@@ -12,10 +12,18 @@
 
 // 第二階段的做法，用陣列將整放資料包起來，再不斷用 .map 重整與建立新資料
         const employeeData = [
-            {code: "H", schedule: [1,1,0,0,1,1,1]}, //每個物件會有一個員工代號與選擇休假日的陣列
-            {code: "N", schedule: [1,0,1,1,0,1,1]}, //休假陣列用 布林值 表示
-            {code: "B", schedule: [1,1,1,1,1,0,0]},
-            {code: "S", schedule: [0,1,1,1,1,1,0]}
+            //{code: "H", schedule: [1,1,0,0,1,1,1], jobType: 'FT', rank: 'senior'}, //每個物件會有一個員工代號與選擇休假日的陣列
+            {code: "N", schedule: [1,1,1,1,0,1,1], jobType: 'FT', rank: 'senior'}, //休假陣列用 布林值 表示
+            {code: "B", schedule: [0,1,1,1,1,1,0], jobType: 'FT', rank: 'senior'},
+
+            {code: "C", schedule: [1,1,1,1,1,0,1], jobType: 'FT', rank: 'junior'},
+            {code: "E", schedule: [1,1,1,1,0,1,0], jobType: 'FT', rank: 'junior'},
+
+            {code: "P", schedule: [1,0,1,1,0,0,1], jobType: 'PT', rank: 'senior'},
+            {code: "M", schedule: [1,1,1,0,1,0,0], jobType: 'PT', rank: 'senior'},
+            {code: "I", schedule: [0,1,1,0,1,1,1], jobType: 'PT', rank: 'senior'},
+
+            {code: "Q", schedule: [0,0,0,0,0,0,1], jobType: 'PT', rank: 'junior'}
         ];
 
         const employeeData_InName = employeeData.map(data => { //建立一個新data，將布林值轉換成各員工代號
@@ -48,6 +56,14 @@
         ShiftTable = [];
         ShiftTable = makeShiftTable(employeeSchedule); //生成班表
         console.log(ShiftTable);
+        console.table(ShiftTable);
+
+        //下一階段為在維持架構為一間店的情況下，分析各員工的身份與能力，分為四種：
+        // 正職奶泡(FT-Senior)
+        // 正職點單(FT-Junior)
+        // 工讀奶泡(PT-Senior)
+        // 工讀點單(PT-Junior)
+        // 並以奶泡為優先，點單為次要，讓大家都有班
 
     </script>
 </body>
