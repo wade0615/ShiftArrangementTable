@@ -83,7 +83,25 @@
             NST[i][1] = junior[i];
         };
         return NST;
-    }
+    };
 
 NewShiftTable = makeNewShiftTable(seniorShiftTable, juniorShiftTable);
 console.log(NewShiftTable);
+
+
+const ftList = document.querySelectorAll('.ftlist td');
+console.log(ftList);
+ftList.forEach((e,index) => {
+    e.innerHTML = NewShiftTable[index][0];
+})
+
+const ptList = document.querySelectorAll('.ptlist td');
+console.log(ptList);
+ptList.forEach((e,index) => {
+    e.innerHTML = NewShiftTable[index][1];
+})
+
+let tr = document.querySelectorAll('tbody tr');
+const td = document.createElement('td');
+console.log(tr[0]);
+
