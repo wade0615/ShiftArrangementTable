@@ -9,9 +9,9 @@
         {code: "C", schedule: [1,1,1,1,1,0,1], jobType: 'FT', rank: 'junior'},
         {code: "E", schedule: [1,1,1,1,0,1,0], jobType: 'FT', rank: 'junior'},
 
-        {code: "P", schedule: [1,0,1,1,0,0,1], jobType: 'PT', rank: 'senior'},
+        // {code: "P", schedule: [1,0,1,1,0,0,1], jobType: 'PT', rank: 'senior'},
         {code: "M", schedule: [1,1,1,0,1,0,0], jobType: 'PT', rank: 'senior'},
-        {code: "I", schedule: [0,1,1,0,1,1,1], jobType: 'PT', rank: 'senior'},
+        // {code: "I", schedule: [0,1,1,0,1,1,1], jobType: 'PT', rank: 'senior'},
 
         {code: "Q", schedule: [0,0,0,0,0,0,1], jobType: 'PT', rank: 'junior'}
     ];
@@ -26,7 +26,7 @@
             rank: data.rank
         }
     });
-    console.log(employeeData_InName);
+    // console.log('employeeData_InName',employeeData_InName);
 
 // 取出含有各員工代號的休假日陣列
     // const employeeSchedule = employeeData_InName.map(e => {
@@ -86,36 +86,46 @@
     };
 
     NewShiftTable = makeNewShiftTable(seniorShiftTable, juniorShiftTable);
-    console.log(NewShiftTable);
+    console.log('NewShiftTable',NewShiftTable);
 
 // 在空空的<tr>中放入我要放的<th>跟<td>*7
     const tr = document.querySelectorAll('tbody tr');
     tr.forEach(tr => {
-        var td = [];
-        td.push('<th scope="row"></th>');
+        var insideTr = [];
+        insideTr.push('<th scope="row"></th>');
         for(i=0;i<7;i++) {
-            td.push('<td></td>')
+            insideTr.push('<td></td>')
         };
-        td = td.join('')
-        tr.innerHTML = td;
+        insideTr = insideTr.join('')
+        tr.innerHTML = insideTr;
         }
     );
 
 // 將 NewShiftTable 大陣列中的正職班表放入DOM表單
     const ftTitle = document.querySelector('.ftlist th');
-    ftTitle.innerHTML = '正職';
+    ftTitle.innerHTML = '壓粉奶泡手';
     const ftList = document.querySelectorAll('.ftlist td');
-    console.log(ftList);
+    console.log("ftList", ftList)
     ftList.forEach((e,index) => {
         e.innerHTML = NewShiftTable[index][0];
     });
 
 // 將 NewShiftTable 大陣列中的ＰＴ班表放入DOM表單
     const ptTitle = document.querySelector('.ptlist th');
-    ptTitle.innerHTML = 'ＰＴ';
+    ptTitle.innerHTML = '點單備料員';
     const ptList = document.querySelectorAll('.ptlist td');
-    console.log(ptList);
+    console.log("ptList", ptList)
     ptList.forEach((e,index) => {
         e.innerHTML = NewShiftTable[index][1];
     });
+
+
+const allList = document.querySelectorAll('td');
+console.log("allList", allList);
+allList.forEach(e => {
+    if(e.innerText.includes('N')) {
+        console.log(e.innerText);
+        e.style.backgroundColor = 'red';
+    }
+});
 
