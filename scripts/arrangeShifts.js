@@ -75,16 +75,13 @@
     juniorShiftTable = makeShiftTable(juniorEmployeeSchedule);
 
 // 將 senior 跟 junior 的班表合併，生成可區分 FT 還是 PT 的總班表大陣列
-    var NewShiftTable = [];
     function makeNewShiftTable(senior, junior) {
-        let NST = [[],[],[],[],[],[],[]];
-        for(i=0; i<7; i++) {
-            NST[i][0] = senior[i];
-            NST[i][1] = junior[i];
-        };
+        var NST = Array(7).fill([]);
+        NST = NST.map((e, index) => [senior[index], junior[index]]);
         return NST;
     };
-
+    
+    var NewShiftTable = [];
     NewShiftTable = makeNewShiftTable(seniorShiftTable, juniorShiftTable);
     console.log('NewShiftTable',NewShiftTable);
 
@@ -129,3 +126,16 @@ allList.forEach(e => {
     }
 });
 
+// week.map((x, index) => {
+//     const jun_sum = employeeData
+//             .filter(x => x.rank === "junior")
+//             .reduce((sum, employ) => {
+//                 sum += employ.schedule[index]
+//             }, 0)
+//     const sen_sum = employeeData
+//             .filter(x => x.rank === "senior")
+//             .reduce((sum, employ) => {
+//                 sum += employ.schedule[index]
+//             }, 0)
+//     return [jun_sum, sen_sum]
+// })
