@@ -74,7 +74,7 @@
         .map(e => e.schedule);
     juniorShiftTable = makeShiftTable(juniorEmployeeSchedule);
 
-// 將 senior 跟 junior 的班表合併，生成可區分 FT 還是 PT 的總班表
+// 將 senior 跟 junior 的班表合併，生成可區分 FT 還是 PT 的總班表大陣列
     var NewShiftTable = [];
     function makeNewShiftTable(senior, junior) {
         let NST = [[],[],[],[],[],[],[]];
@@ -85,23 +85,37 @@
         return NST;
     };
 
-NewShiftTable = makeNewShiftTable(seniorShiftTable, juniorShiftTable);
-console.log(NewShiftTable);
+    NewShiftTable = makeNewShiftTable(seniorShiftTable, juniorShiftTable);
+    console.log(NewShiftTable);
 
+// 在空空的<tr>中放入我要放的<th>跟<td>*7
+    const tr = document.querySelectorAll('tbody tr');
+    tr.forEach(tr => {
+        var td = [];
+        td.push('<th scope="row"></th>');
+        for(i=0;i<7;i++) {
+            td.push('<td></td>')
+        };
+        td = td.join('')
+        tr.innerHTML = td;
+        }
+    );
 
-const ftList = document.querySelectorAll('.ftlist td');
-console.log(ftList);
-ftList.forEach((e,index) => {
-    e.innerHTML = NewShiftTable[index][0];
-})
+// 將 NewShiftTable 大陣列中的正職班表放入DOM表單
+    const ftTitle = document.querySelector('.ftlist th');
+    ftTitle.innerHTML = '正職';
+    const ftList = document.querySelectorAll('.ftlist td');
+    console.log(ftList);
+    ftList.forEach((e,index) => {
+        e.innerHTML = NewShiftTable[index][0];
+    });
 
-const ptList = document.querySelectorAll('.ptlist td');
-console.log(ptList);
-ptList.forEach((e,index) => {
-    e.innerHTML = NewShiftTable[index][1];
-})
-
-let tr = document.querySelectorAll('tbody tr');
-const td = document.createElement('td');
-console.log(tr[0]);
+// 將 NewShiftTable 大陣列中的ＰＴ班表放入DOM表單
+    const ptTitle = document.querySelector('.ptlist th');
+    ptTitle.innerHTML = 'ＰＴ';
+    const ptList = document.querySelectorAll('.ptlist td');
+    console.log(ptList);
+    ptList.forEach((e,index) => {
+        e.innerHTML = NewShiftTable[index][1];
+    });
 
