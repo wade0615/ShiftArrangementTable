@@ -1,6 +1,6 @@
 {
     "version": 3,
-    "mappings": "AAAA,AAAA,CAAC,CAAC;EACE,OAAO,EAAE,eAAe;CAAG",
+    "mappings": "AAGA,AAAA,EAAE,CAAC;EACC,SAAS,EAAE,IAAI;CAAG;;AAEtB,AAAA,IAAI,CAAC;EACD,OAAO,EAAE,IAAI;CAAG",
     "sources": [
         "../arrangeShifts.sass"
     ],

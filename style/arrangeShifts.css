@@ -1,4 +1,8 @@
-* {
-  outline: solid 1px black;
+h1 {
+  font-size: 40px;
+}
+
+body {
+  padding: 50px;
 }
 /*# sourceMappingURL=arrangeShifts.css.map */

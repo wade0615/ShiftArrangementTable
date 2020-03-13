@@ -8,9 +8,9 @@
         {code: "C", schedule: [1,1,1,1,1,0,1], jobType: 'FT', rank: 'junior'},
         {code: "E", schedule: [1,1,1,1,0,1,0], jobType: 'FT', rank: 'junior'},
 
-        // {code: "P", schedule: [1,0,1,1,0,0,1], jobType: 'PT', rank: 'senior'},
+        {code: "P", schedule: [1,0,1,1,0,0,1], jobType: 'PT', rank: 'senior'},
         {code: "M", schedule: [1,1,1,0,1,0,0], jobType: 'PT', rank: 'senior'},
-        // {code: "I", schedule: [0,1,1,0,1,1,1], jobType: 'PT', rank: 'senior'},
+        {code: "I", schedule: [0,1,1,0,1,1,1], jobType: 'PT', rank: 'senior'},
 
         {code: "Q", schedule: [0,0,0,0,0,0,1], jobType: 'PT', rank: 'junior'}
     ];
@@ -21,8 +21,10 @@
         const employeeData_InName = employeeData_ToName(employeeData);
         const shiftTable = SeparateRanks(employeeData_InName);
         createListElement();
+        console.log(shiftTable);
         createSeniorShiftTable(shiftTable);
         createJuniorShiftTable(shiftTable);
+        SeparateJobType(employeeData);
     };
 
 //建立一個新data，將布林值轉換成各員工代號
@@ -85,7 +87,10 @@
         senTitle.innerHTML = '壓粉奶泡手';
         const senList = document.querySelectorAll('.senlist td');
         senList.forEach((e,index) => {
-            e.innerHTML = shiftTable[index][0];
+            e.innerHTML = shiftTable[index][0]
+                .split('')
+                .map(e => `<span>${e}</span>`)
+                .join('');
         });
     };
 
@@ -95,16 +100,30 @@
         junTitle.innerHTML = '點單備料員';
         const junList = document.querySelectorAll('.junlist td');
         junList.forEach((e,index) => {
-            e.innerHTML = shiftTable[index][1];
+            e.innerHTML = shiftTable[index][1]
+                .split('')
+                .map(e => `<span>${e}</span>`)
+                .join('');
         });
     };
 
-
-const allList = document.querySelectorAll('td');
-allList.forEach(e => {
-    if(e.innerText.includes('N')) {
-        console.log(e.innerText);
-        e.style.backgroundColor = 'red';
-    }
-});
+// 將表中 PT 跟 FT 的員工分別設置不同的顏色
+    function SeparateJobType(employeeData){
+        const allList = document.querySelectorAll('span');
+        PTEmployees = employeeData
+                    .filter(x => x.jobType === "PT")
+                    .map(x => x.code);
+        FTEmployees = employeeData
+                    .filter(x => x.jobType === "FT")
+                    .map(x => x.code);
+        allList.forEach(e => {
+            PTEmployees.forEach(PTEmployee => {
+                if(PTEmployee === e.innerText ? e.style.color = 'blue' : '');
+            });
+            FTEmployees.forEach(FTEmployee => {
+                if(FTEmployee === e.innerText ? e.style.color = 'red' : '');
+            });
+            
+        });
+    };
 
