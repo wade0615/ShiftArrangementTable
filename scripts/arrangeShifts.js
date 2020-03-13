@@ -36,8 +36,7 @@
                 rank: data.rank
             }
         });
-    }
-    // console.log('employeeData_InName',employeeData_InName);
+    };
 
 // 第三階段的做法，產出可區分 junior or senior 的班表陣列
 //此階段在維持架構為一間店的情況下，分析各員工的身份與能力，分為四種：
@@ -59,9 +58,8 @@
             //過濾出 senior 的班表
             const sen_sum = employeeData_InName
                 .filter(x => x.rank === "senior")
-                .reduce((sum, employ) => {
-                    return sum += employ.schedule[index]
-            }, '')
+                .reduce((sum, employ) => sum += employ.schedule[index]
+                , '')
             return [sen_sum, jun_sum];
         });
     };
@@ -79,7 +77,7 @@
             tr.innerHTML = insideTr;
             }
         );
-    }
+    };
 
 // 將 shiftTable 大陣列中的senior班表放入DOM表單
     function createSeniorShiftTable(shiftTable){
@@ -89,7 +87,7 @@
         senList.forEach((e,index) => {
             e.innerHTML = shiftTable[index][0];
         });
-    }
+    };
 
 // 將 shiftTable 大陣列中的junior班表放入DOM表單
     function createJuniorShiftTable(shiftTable){
@@ -99,7 +97,7 @@
         junList.forEach((e,index) => {
             e.innerHTML = shiftTable[index][1];
         });
-    }
+    };
 
 
 const allList = document.querySelectorAll('td');
