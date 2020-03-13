@@ -14,18 +14,30 @@
 
         {code: "Q", schedule: [0,0,0,0,0,0,1], jobType: 'PT', rank: 'junior'}
     ];
+    
+// 主程式：
+    makeShiftTable (employeeData)
+    function makeShiftTable (employeeData){
+        const employeeData_InName = employeeData_ToName(employeeData);
+        const shiftTable = SeparateRanks(employeeData_InName);
+        createListElement();
+        createSeniorShiftTable(shiftTable);
+        createJuniorShiftTable(shiftTable);
+    };
 
 //建立一個新data，將布林值轉換成各員工代號
-    const employeeData_InName = employeeData.map(data => {
-        schedule_InName = data.schedule.map(e => {return (e === 1 ? data.code : '')});
-        return data = {
-            code: data.code,
-            schedule: schedule_InName,
-            jobType: data.jobType,
-            rank: data.rank
-        }
-    });
-    console.log('employeeData_InName',employeeData_InName);
+    function employeeData_ToName (employeeData) {
+        return employeeData.map(data => {
+            schedule_InName = data.schedule.map(e => {return (e === 1 ? data.code : '')});
+            return data = {
+                code: data.code,
+                schedule: schedule_InName,
+                jobType: data.jobType,
+                rank: data.rank
+            }
+        });
+    }
+    // console.log('employeeData_InName',employeeData_InName);
 
 // 第三階段的做法，產出可區分 junior or senior 的班表陣列
 //此階段在維持架構為一間店的情況下，分析各員工的身份與能力，分為四種：
@@ -36,51 +48,58 @@
 // 並以奶泡為優先，點單為次要，讓大家都有班
 
 // 將 employeeData_InName 帶入並過濾出一個可區分 junior or senior 的班表陣列
-    var week = Array(7);
-    shiftTable = week.fill([]).map((x, index) => {
-        //過濾出 junior 的班表
-        const jun_sum = employeeData_InName
-            .filter(x => x.rank === "junior")
-            .reduce((sum, employ) => sum += employ.schedule[index]
-            , '');
-        //過濾出 senior 的班表
-        const sen_sum = employeeData_InName
-            .filter(x => x.rank === "senior")
-            .reduce((sum, employ) => {
-                return sum += employ.schedule[index]
-        }, '')
-        return [sen_sum, jun_sum];
-    })
-    console.log("shiftTable", shiftTable);
+    function SeparateRanks (employeeData_InName){
+        var week = Array(7);
+        return week.fill([]).map((x, index) => {
+            //過濾出 junior 的班表
+            const jun_sum = employeeData_InName
+                .filter(x => x.rank === "junior")
+                .reduce((sum, employ) => sum += employ.schedule[index]
+                , '');
+            //過濾出 senior 的班表
+            const sen_sum = employeeData_InName
+                .filter(x => x.rank === "senior")
+                .reduce((sum, employ) => {
+                    return sum += employ.schedule[index]
+            }, '')
+            return [sen_sum, jun_sum];
+        });
+    };
 
 // 在空空的<tr>中放入我要放的<th>跟<td>*7
-    const tr = document.querySelectorAll('tbody tr');
-    tr.forEach(tr => {
-        var insideTr = [];
-        insideTr.push('<th scope="row"></th>');
-        for(i=0;i<7;i++) {
-            insideTr.push('<td></td>')
-        };
-        insideTr = insideTr.join('')
-        tr.innerHTML = insideTr;
-        }
-    );
+    function createListElement(){
+        const tr = document.querySelectorAll('tbody tr');
+        tr.forEach(tr => {
+            var insideTr = [];
+            insideTr.push('<th scope="row"></th>');
+            for(i=0;i<7;i++) {
+                insideTr.push('<td></td>')
+            };
+            insideTr = insideTr.join('')
+            tr.innerHTML = insideTr;
+            }
+        );
+    }
 
-// 將 shiftTable 大陣列中的正職班表放入DOM表單
-    const ftTitle = document.querySelector('.ftlist th');
-    ftTitle.innerHTML = '壓粉奶泡手';
-    const ftList = document.querySelectorAll('.ftlist td');
-    ftList.forEach((e,index) => {
-        e.innerHTML = shiftTable[index][0];
-    });
+// 將 shiftTable 大陣列中的senior班表放入DOM表單
+    function createSeniorShiftTable(shiftTable){
+        const senTitle = document.querySelector('.senlist th');
+        senTitle.innerHTML = '壓粉奶泡手';
+        const senList = document.querySelectorAll('.senlist td');
+        senList.forEach((e,index) => {
+            e.innerHTML = shiftTable[index][0];
+        });
+    }
 
-// 將 shiftTable 大陣列中的ＰＴ班表放入DOM表單
-    const ptTitle = document.querySelector('.ptlist th');
-    ptTitle.innerHTML = '點單備料員';
-    const ptList = document.querySelectorAll('.ptlist td');
-    ptList.forEach((e,index) => {
-        e.innerHTML = shiftTable[index][1];
-    });
+// 將 shiftTable 大陣列中的junior班表放入DOM表單
+    function createJuniorShiftTable(shiftTable){
+        const junTitle = document.querySelector('.junlist th');
+        junTitle.innerHTML = '點單備料員';
+        const junList = document.querySelectorAll('.junlist td');
+        junList.forEach((e,index) => {
+            e.innerHTML = shiftTable[index][1];
+        });
+    }
 
 
 const allList = document.querySelectorAll('td');
