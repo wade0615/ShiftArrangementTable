@@ -127,3 +127,22 @@
         });
     };
 
+
+// 每日人力需求預測
+const employeeResourceForecast = Array(7).fill([3,2]);
+console.log(employeeResourceForecast);
+
+// PT人力需求預測
+const PT_ResourceForecast = employeeResourceForecast.map(dayForecast => {
+    return dayForecast.map(e => e - 1);
+});
+console.log(PT_ResourceForecast);
+
+// PT給出的班表
+var PT_Data = [
+    {code: "P", schedule: [[1,1],[0,0],[1,0],[1,0],[0,1],[0,0],[1,1]], jobType: 'PT', rank: 'senior'},
+    {code: "M", schedule: [[1,1],[0,0],[1,0],[1,0],[0,1],[0,0],[1,1]], jobType: 'PT', rank: 'senior'},
+    {code: "I", schedule: [[0,0],[1,1],[1,0],[1,0],[0,1],[0,0],[1,1]], jobType: 'PT', rank: 'senior'},
+    {code: "Q", schedule: [[0,0],[1,1],[1,0],[1,0],[0,1],[0,0],[1,1]], jobType: 'PT', rank: 'junior'}
+];
+
