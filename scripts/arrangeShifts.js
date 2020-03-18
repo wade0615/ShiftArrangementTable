@@ -16,7 +16,7 @@
     ];
     
 // 主程式：
-    makeShiftTable (employeeData)
+    makeShiftTable (employeeData);
     function makeShiftTable (employeeData){
         const employeeData_InName = employeeData_ToName(employeeData);
         const shiftTable = SeparateRanks(employeeData_InName);
@@ -130,13 +130,6 @@
 
 // 每日人力需求預測
 const employeeResourceForecast = Array(7).fill([3,2]);
-console.log(employeeResourceForecast);
-
-// PT人力需求預測
-const PT_ResourceForecast = employeeResourceForecast.map(dayForecast => {
-    return dayForecast.map(e => e - 1);
-});
-console.log(PT_ResourceForecast);
 
 // PT給出的班表
 var PT_Data = [
@@ -146,3 +139,44 @@ var PT_Data = [
     {code: "Q", schedule: [[0,0],[1,1],[1,0],[1,0],[0,1],[0,0],[1,1]], jobType: 'PT', rank: 'junior'}
 ];
 
+FT_NeededPerDay();
+
+function FT_NeededPerDay(){
+    //建立一個新data，將布林值轉換成各員工代號
+    PT_Data_InName = PT_Data_ToName(PT_Data);
+
+    // PT人力需求預測
+    const PT_ResourceForecast = employeeResourceForecast.map(dayForecast => dayForecast.map(e => e - 1));
+    // 列出 PT 需求人數與可上班人員
+    PT_NeededOnDuty = list_PT_OnDutyTable(PT_ResourceForecast);
+
+    console.log("PT_NeededOnDuty", PT_NeededOnDuty)
+};
+
+// 將 PT_Data 上班日的布林值轉換成各員工代號
+function PT_Data_ToName(PT_Data){
+    return PT_Data.map(data => {
+        schedule_InName = data.schedule.map(e => {
+            return e = e.map(onDuty => onDuty === 1 ? data.code : '')
+        });
+        return data = {
+            code: data.code,
+            schedule: schedule_InName,
+            jobType: data.jobType,
+            rank: data.rank
+        }
+    })
+};
+
+// 列出 PT 需求人數與可上班人員
+function list_PT_OnDutyTable(PT_ResourceForecast) {
+    return PT_ResourceForecast.map((ResourceForecastPerDay,index) => {
+        return ResourceForecastPerDay.map((Shift,idx) => {
+            PT_OnDuty = PT_Data_InName.map(e => e.schedule[index][idx]).join('');
+            return {
+                Needed: Shift,
+                canDuty: PT_OnDuty
+            }
+        })
+    });
+}
