@@ -148,10 +148,35 @@ function FT_NeededPerDay(){
     // PT人力需求預測
     const PT_ResourceForecast = employeeResourceForecast.map(dayForecast => dayForecast.map(e => e - 1));
     // 列出 PT 需求人數與可上班人員
-    PT_NeededOnDuty = list_PT_OnDutyTable(PT_ResourceForecast);
+    PT_NeededOnDuty = list_PT_onDutyTable(PT_ResourceForecast)
+
+    // 萬一PT早晚皆可上班讓PT優先填滿晚上那個缺
+    // PT_NeededOnDuty2 = PT_NeededOnDuty.map(perDay => {
+    //     console.log(perDay);
+    //     console.log(perDay[0].canDuty.split(''));
+    //     perDay[0].canDuty = perDay[0].canDuty.split('').map(e => {
+    //         // perDay[1].canDuty.split('').forEach(f => {
+    //         //     if(f === e){
+    //         //         return e = '';
+    //         //     }
+    //         //     // return e
+    //         // })
+    //         // if(e === 'P'){
+    //         //     console.log('stop forEach')
+    //         //     return e = '';
+    //         // }
+    //         // return e
+    //     }).join('')
+    //     // return {
+    //     //     Needed: perDay.Needed,
+    //     //     canDuty: sdf
+    //     // }
+    // })
 
     console.log("PT_NeededOnDuty", PT_NeededOnDuty)
+    // console.log("PT_NeededOnDuty", PT_NeededOnDuty2)
 };
+
 
 // 將 PT_Data 上班日的布林值轉換成各員工代號
 function PT_Data_ToName(PT_Data){
@@ -169,14 +194,83 @@ function PT_Data_ToName(PT_Data){
 };
 
 // 列出 PT 需求人數與可上班人員
-function list_PT_OnDutyTable(PT_ResourceForecast) {
+function list_PT_onDutyTable(PT_ResourceForecast) {
     return PT_ResourceForecast.map((ResourceForecastPerDay,index) => {
         return ResourceForecastPerDay.map((Shift,idx) => {
-            PT_OnDuty = PT_Data_InName.map(e => e.schedule[index][idx]).join('');
+            PT_onDuty = PT_Data_InName.map(e => e.schedule[index][idx]).join('');
             return {
                 Needed: Shift,
-                canDuty: PT_OnDuty
+                canDuty: PT_onDuty
             }
         })
     });
 }
+
+// 鵬化幫解
+// const arr = [{Needed: 2, canDuty: "PM"},{Needed: 1, canDuty: "PM"}];
+
+// const newArr = arr.slice().flatMap((obj, index) => {
+//   let strArr = obj.canDuty.split('');
+//   let str = obj.canDuty;
+//   if(index + 1 == arr.length) return;
+//   if(obj.canDuty != arr[index + 1].canDuty) return;
+//   if(strArr.find(strr => strr == 'P')) {
+//     arr[index + 1].canDuty = 'P';
+//     strArr.splice(str.indexOf('P'), 1); 
+//   } 
+//   if(!strArr.find(strr => strr == 'P')) {
+//     console.log(strArr)
+//     obj.canDuty = strArr.join('');
+//   }
+//   return arr
+// }).filter(obj => obj)
+// console.log(newArr)
+
+
+// 整理邏輯
+// 若早晚人員相同，隨機取一位給晚班，剩餘人員早班
+if([{Needed: 2, canDuty: "PMIQ"},{Needed: 1, canDuty: "PMIQ"}]){
+    [{Needed: 2, canDuty: "MIQ"},{Needed: 1, canDuty: "P"}];
+}
+// 若有人只能晚班，則只能晚班的優先晚班
+if([{Needed: 2, canDuty: "PIQ"},{Needed: 1, canDuty: "PMIQ"}]){
+    [{Needed: 2, canDuty: "PIQ"},{Needed: 1, canDuty: "M"}];
+}
+if([{Needed: 2, canDuty: "PMIQ"},{Needed: 1, canDuty: "P"}]){
+    [{Needed: 2, canDuty: "MIQ"},{Needed: 1, canDuty: "P"}];
+}
+
+PT_NeededOnDuty2 = [
+    [{Needed: 2, canDuty: "PMI"},{Needed: 1, canDuty: "PMIQ"}],
+    [{Needed: 2, canDuty: "NHG"},{Needed: 1, canDuty: "NHGK"}]
+]
+
+PT_canDuty = PT_NeededOnDuty2.map(e => {
+    return e.map(e => e.canDuty)
+})
+console.log(PT_canDuty);
+
+PT_onDuty = PT_canDuty.map(e => {
+    if(e[0] === e[1]){
+        arr = e[0].split('')
+        randon = Math.floor((Math.random() * arr.length))
+        chosenOne = arr[randon]
+        arr[randon] = ''
+        return [arr.join(''), chosenOne]
+    }
+    else if (e[0] > e[1]){
+        arr = e[1].split('')
+        randon = Math.floor((Math.random() * arr.length))
+        chosenOne = arr[randon]
+        daytime = e[0].split('').filter(e => e != chosenOne).join('')
+        return [daytime, chosenOne]
+    }
+    else {
+        arr0 = e[0].split('')
+        arr1 = e[1].split('')
+        daytime = arr1.filter((e, index) => e === arr0[index]).join('');
+        nighttime = arr1.filter((e, index) => e != arr0[index]).join('')
+        return [daytime, nighttime]
+    }
+})
+console.log(PT_onDuty)
