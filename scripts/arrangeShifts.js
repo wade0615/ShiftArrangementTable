@@ -151,27 +151,7 @@ function FT_NeededPerDay(){
     PT_NeededOnDuty = list_PT_onDutyTable(PT_ResourceForecast)
 
     // 萬一PT早晚皆可上班讓PT優先填滿晚上那個缺
-    // PT_NeededOnDuty2 = PT_NeededOnDuty.map(perDay => {
-    //     console.log(perDay);
-    //     console.log(perDay[0].canDuty.split(''));
-    //     perDay[0].canDuty = perDay[0].canDuty.split('').map(e => {
-    //         // perDay[1].canDuty.split('').forEach(f => {
-    //         //     if(f === e){
-    //         //         return e = '';
-    //         //     }
-    //         //     // return e
-    //         // })
-    //         // if(e === 'P'){
-    //         //     console.log('stop forEach')
-    //         //     return e = '';
-    //         // }
-    //         // return e
-    //     }).join('')
-    //     // return {
-    //     //     Needed: perDay.Needed,
-    //     //     canDuty: sdf
-    //     // }
-    // })
+
 
     console.log("PT_NeededOnDuty", PT_NeededOnDuty)
     // console.log("PT_NeededOnDuty", PT_NeededOnDuty2)
@@ -206,27 +186,6 @@ function list_PT_onDutyTable(PT_ResourceForecast) {
     });
 }
 
-// 鵬化幫解
-// const arr = [{Needed: 2, canDuty: "PM"},{Needed: 1, canDuty: "PM"}];
-
-// const newArr = arr.slice().flatMap((obj, index) => {
-//   let strArr = obj.canDuty.split('');
-//   let str = obj.canDuty;
-//   if(index + 1 == arr.length) return;
-//   if(obj.canDuty != arr[index + 1].canDuty) return;
-//   if(strArr.find(strr => strr == 'P')) {
-//     arr[index + 1].canDuty = 'P';
-//     strArr.splice(str.indexOf('P'), 1); 
-//   } 
-//   if(!strArr.find(strr => strr == 'P')) {
-//     console.log(strArr)
-//     obj.canDuty = strArr.join('');
-//   }
-//   return arr
-// }).filter(obj => obj)
-// console.log(newArr)
-
-
 // 整理邏輯
 // 若早晚人員相同，隨機取一位給晚班，剩餘人員早班
 if([{Needed: 2, canDuty: "PMIQ"},{Needed: 1, canDuty: "PMIQ"}]){
@@ -241,7 +200,7 @@ if([{Needed: 2, canDuty: "PMIQ"},{Needed: 1, canDuty: "P"}]){
 }
 
 PT_NeededOnDuty2 = [
-    [{Needed: 2, canDuty: "PMI"},{Needed: 1, canDuty: "PMIQ"}],
+    [{Needed: 2, canDuty: "PM"},{Needed: 1, canDuty: "MIQ"}],
     [{Needed: 2, canDuty: "NHG"},{Needed: 1, canDuty: "NHGK"}]
 ]
 
@@ -250,27 +209,39 @@ PT_canDuty = PT_NeededOnDuty2.map(e => {
 })
 console.log(PT_canDuty);
 
-PT_onDuty = PT_canDuty.map(e => {
-    if(e[0] === e[1]){
-        arr = e[0].split('')
-        randon = Math.floor((Math.random() * arr.length))
-        chosenOne = arr[randon]
-        arr[randon] = ''
-        return [arr.join(''), chosenOne]
-    }
-    else if (e[0] > e[1]){
-        arr = e[1].split('')
-        randon = Math.floor((Math.random() * arr.length))
-        chosenOne = arr[randon]
-        daytime = e[0].split('').filter(e => e != chosenOne).join('')
-        return [daytime, chosenOne]
-    }
-    else {
-        arr0 = e[0].split('')
-        arr1 = e[1].split('')
-        daytime = arr1.filter((e, index) => e === arr0[index]).join('');
-        nighttime = arr1.filter((e, index) => e != arr0[index]).join('')
-        return [daytime, nighttime]
-    }
-})
+const employees = {
+    ofDayTime: 0,
+    ofNightTime: 1
+}
+
+PT_onDuty = PT_canDuty.map(choosePTofNightTime())
 console.log(PT_onDuty)
+function choosePTofNightTime() {
+    return e => {
+        if (e[employees.ofDayTime] === e[employees.ofNightTime]) {
+            daytimeEmployees = e[employees.ofDayTime].split('');
+            randon = Math.floor((Math.random() * daytimeEmployees.length));
+            chosenOne = daytimeEmployees[randon];
+            daytimeEmployees[randon] = '';
+            return [daytimeEmployees.join(''), chosenOne];
+        }
+        else if (e[employees.ofDayTime] > e[employees.ofNightTime]) {
+            nighttimeEmployees = e[employees.ofNightTime].split('');
+            randon = Math.floor((Math.random() * nighttimeEmployees.length));
+            chosenOne = nighttimeEmployees[randon];
+            daytime = e[employees.ofDayTime].split('').filter(e => e != chosenOne).join('');
+            return [daytime, chosenOne];
+        }
+        else { //if (e[employees.ofDayTime] < e[employees.ofNightTime])
+            daytimeEmployees = e[employees.ofDayTime].split('');
+            nighttimeEmployees = e[employees.ofNightTime].split('');
+            
+            daytime = nighttimeEmployees.filter((e, index) => e === daytimeEmployees[index]).join('');
+            nighttimeEmployees = nighttimeEmployees.filter((e, index) => e != daytimeEmployees[index]).join('');
+            randon = Math.floor((Math.random() * nighttimeEmployees.length));
+            nighttime = nighttimeEmployees[randon];
+            return [daytime, nighttime];
+        }
+    };
+}
+
