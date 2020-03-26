@@ -1,3 +1,22 @@
+// 建立輸入表單
+const inputList = document.querySelector('#inputShiftTable tbody');
+const employee = document.querySelectorAll('#inputShiftTable tbody tr');
+console.log(employee);
+console.log(employee[employee.length - 1]);
+
+const btn = document.querySelector('button');
+btn.addEventListener('click', () => {
+    // console.log(employee[0].cells[0].children[0].value);
+    // console.log(employee[0].cells[1].children[0].value);
+    // console.log(employee[0].cells[2].children[0].value);
+    let aa = employee[0].cells[0].children[0].value != '' ? true : false ;
+    let bb = employee[0].cells[1].children[0].value != '' ? true : false ;
+    let cc = employee[0].cells[2].children[0].value != '' ? true : false ;
+    if( aa || bb || cc ){
+        console.log('要加新的一列')
+    }
+})
+
 
 //每個物件會有一個員工代號與選擇休假日的陣列，休假陣列用 布林值 表示
     const employeeData = [
@@ -16,7 +35,7 @@
     ];
     
 // 主程式：
-    makeShiftTable (employeeData);
+    // makeShiftTable (employeeData);
     function makeShiftTable (employeeData){
         const employeeData_InName = employeeData_ToName(employeeData);
         const shiftTable = SeparateRanks(employeeData_InName);
