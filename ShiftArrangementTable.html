@@ -12,7 +12,76 @@
 <body>
     <h1>Shift Arrangement Table</h1>
 
-    <table class="table table-sm table-hover">
+    <h2>輸入員工休假日</h2>
+    <table class="table table-sm table-hover" id="inputShiftTable">
+        <thead>
+            <tr>
+                <th scope="col">代號</th>
+                <th scope="col">值種</th>
+                <th scope="col">等級</th>
+                <th scope="col">一</th>
+                <th scope="col">二</th>
+                <th scope="col">三</th>
+                <th scope="col">四</th>
+                <th scope="col">五</th>
+                <th scope="col">六</th>
+                <th scope="col">日</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="employees">
+                <th><input type="text" value="" class="employeeCode"></th>
+                <td>
+                    <select class="form-control" id="jobType">
+                        <option value="">請選擇職種</option>
+                        <option value="1">正職</option>
+                        <option value="2">PT</option>                    
+                    </select>
+                </td>
+                <td>
+                    <select class="form-control" id="rank">
+                        <option value="">請選擇能力等級</option>
+                        <option value="1">Junior</option>
+                        <option value="2">Senior</option>                    
+                    </select>
+                </td>
+                <td><input type="checkbox" name="" id=""></td>
+                <td><input type="checkbox" name="" id=""></td>
+                <td><input type="checkbox" name="" id=""></td>
+                <td><input type="checkbox" name="" id=""></td>
+                <td><input type="checkbox" name="" id=""></td>
+                <td><input type="checkbox" name="" id=""></td>
+                <td><input type="checkbox" name="" id=""></td>
+            </tr>
+            <tr class="employees">
+                <th><input type="text" value="" class="employeeCode"></th>
+                <td>
+                    <select class="form-control" id="jobType">
+                        <option value="">請選擇職種</option>
+                        <option value="1">正職</option>
+                        <option value="2">PT</option>                    
+                    </select>
+                </td>
+                <td>
+                    <select class="form-control" id="rank">
+                        <option value="">請選擇能力等級</option>
+                        <option value="1">Junior</option>
+                        <option value="2">Senior</option>                    
+                    </select>
+                </td>
+                <td><input type="checkbox" name="" id=""></td>
+                <td><input type="checkbox" name="" id=""></td>
+                <td><input type="checkbox" name="" id=""></td>
+                <td><input type="checkbox" name="" id=""></td>
+                <td><input type="checkbox" name="" id=""></td>
+                <td><input type="checkbox" name="" id=""></td>
+                <td><input type="checkbox" name="" id=""></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>班表生成結果</h2>
+    <table class="table table-sm table-hover" id="resultShiftTable">
         <thead>
             <tr>
                 <th scope="col">#</th>
@@ -29,7 +98,7 @@
             <tr class="senlist"></tr>
             <tr class="junlist"></tr>
         </tbody>
-        </table>
+    </table>
 
     <!-- 引入bootstrap -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

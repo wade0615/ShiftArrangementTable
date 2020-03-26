@@ -68,24 +68,24 @@
 
 // 在空空的<tr>中放入我要放的<th>跟<td>*7
     function createListElement(){
-        const tr = document.querySelectorAll('tbody tr');
-        tr.forEach(tr => {
+        const resultShiftTableTr = document.querySelectorAll('#resultShiftTable tbody tr');
+        resultShiftTableTr.forEach(resultShiftTableTr => {
             var insideTr = [];
             insideTr.push('<th scope="row"></th>');
             for(i=0;i<7;i++) {
                 insideTr.push('<td></td>')
             };
             insideTr = insideTr.join('')
-            tr.innerHTML = insideTr;
+            resultShiftTableTr.innerHTML = insideTr;
             }
         );
     };
 
 // 將 shiftTable 大陣列中的senior班表放入DOM表單
     function createSeniorShiftTable(shiftTable){
-        const senTitle = document.querySelector('.senlist th');
+        const senTitle = document.querySelector('#resultShiftTable .senlist th');
         senTitle.innerHTML = '壓粉奶泡手';
-        const senList = document.querySelectorAll('.senlist td');
+        const senList = document.querySelectorAll('#resultShiftTable .senlist td');
         senList.forEach((e,index) => {
             e.innerHTML = shiftTable[index][0]
                 .split('')
@@ -96,9 +96,9 @@
 
 // 將 shiftTable 大陣列中的junior班表放入DOM表單
     function createJuniorShiftTable(shiftTable){
-        const junTitle = document.querySelector('.junlist th');
+        const junTitle = document.querySelector('#resultShiftTable .junlist th');
         junTitle.innerHTML = '點單備料員';
-        const junList = document.querySelectorAll('.junlist td');
+        const junList = document.querySelectorAll('#resultShiftTable .junlist td');
         junList.forEach((e,index) => {
             e.innerHTML = shiftTable[index][1]
                 .split('')
@@ -200,7 +200,7 @@ if([{Needed: 2, canDuty: "PMIQ"},{Needed: 1, canDuty: "P"}]){
 }
 
 PT_NeededOnDuty2 = [
-    [{Needed: 2, canDuty: "PM"},{Needed: 1, canDuty: "MIQ"}],
+    [{Needed: 2, canDuty: "PMR"},{Needed: 1, canDuty: "PMIQ"}],
     [{Needed: 2, canDuty: "NHG"},{Needed: 1, canDuty: "NHGK"}]
 ]
 
@@ -218,14 +218,16 @@ PT_onDuty = PT_canDuty.map(choosePTofNightTime())
 console.log(PT_onDuty)
 function choosePTofNightTime() {
     return e => {
-        if (e[employees.ofDayTime] === e[employees.ofNightTime]) {
+        if (e[employees.ofDayTime].split('').length === e[employees.ofNightTime].split('').length) {
+            console.log('A===B')
             daytimeEmployees = e[employees.ofDayTime].split('');
             randon = Math.floor((Math.random() * daytimeEmployees.length));
             chosenOne = daytimeEmployees[randon];
             daytimeEmployees[randon] = '';
             return [daytimeEmployees.join(''), chosenOne];
         }
-        else if (e[employees.ofDayTime] > e[employees.ofNightTime]) {
+        else if (e[employees.ofDayTime].split('').length > e[employees.ofNightTime].split('').length) {
+            console.log('A>B')
             nighttimeEmployees = e[employees.ofNightTime].split('');
             randon = Math.floor((Math.random() * nighttimeEmployees.length));
             chosenOne = nighttimeEmployees[randon];
@@ -233,10 +235,23 @@ function choosePTofNightTime() {
             return [daytime, chosenOne];
         }
         else { //if (e[employees.ofDayTime] < e[employees.ofNightTime])
+            console.log('A<B')
+            // 先將早晚班人員字串都轉成陣列
             daytimeEmployees = e[employees.ofDayTime].split('');
             nighttimeEmployees = e[employees.ofNightTime].split('');
+            // 將晚班人員逐一過濾是否也符合早班人員，將早晚班皆可的人員優先排去早班
+            daytime = nighttimeEmployees.map(e => 
+                daytimeEmployees.filter(r => e === r)).join('');
+            //將原有就只能早班的人員也加入早班行列
+            onlyDaytimePT = daytimeEmployees.map(e => {
+                if(daytime.includes(e)){
+                    return
+                }
+                return e
+            }).join('');
+            daytime = [daytime, onlyDaytimePT].join('')
+            console.log(daytime)
             
-            daytime = nighttimeEmployees.filter((e, index) => e === daytimeEmployees[index]).join('');
             nighttimeEmployees = nighttimeEmployees.filter((e, index) => e != daytimeEmployees[index]).join('');
             randon = Math.floor((Math.random() * nighttimeEmployees.length));
             nighttime = nighttimeEmployees[randon];
@@ -245,3 +260,14 @@ function choosePTofNightTime() {
     };
 }
 
+// 鵬化支援，鵬化建議 find slice every
+// const canDuty = 'PMIQ'.split(''); // get data and split immediately
+// const result = 'P'; // select the target code
+
+// const ans = canDuty.find(str => str == result);
+// const index = canDuty.indexOf(ans);
+// canDuty.splice(index, 1);
+// const newStr = canDuty.join('');
+
+// console.log('ans', ans);
+// console.log('newStr', newStr);
