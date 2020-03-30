@@ -1,6 +1,6 @@
 // 建立輸入表單
 const inputList = document.querySelector('#inputShiftTable tbody');
-const employee = document.querySelectorAll('#inputShiftTable tbody tr');
+let employee = document.querySelectorAll('#inputShiftTable tbody tr');
 console.log(inputList);
 
 const btn = document.querySelector('button');
@@ -11,9 +11,8 @@ btn.addEventListener('click', () => {
     let isEmployeeRankEmpty = employee[lastInput].cells[2].children[0].value != '' ? true : false ;
     if( isEmployeeCodeEmpty || isEmployeeJobTypeEmpty || isEmployeeRankEmpty ){
         console.log('要加新的一列');
-        let addtr = document.createElement("tr");
-        inputList.append(addtr);
-        let lastchild = inputList .lastElementChild;
+        inputList.append(document.createElement("tr"));
+        let lastchild = inputList.lastElementChild;
         lastchild.classList.add('employee');
         lastchild.innerHTML = `
         <th><input type="text" class="employeeCode"></th>
@@ -39,6 +38,8 @@ btn.addEventListener('click', () => {
         <td><input type="checkbox" name="" id=""></td>
         <td><input type="checkbox" name="" id=""></td>
         `
+        employee = document.querySelectorAll('#inputShiftTable tbody tr');
+        lastInput = employee.length - 1;
     } else {
         console.log('你還有空格喔')
     }
