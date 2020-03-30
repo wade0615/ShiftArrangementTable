@@ -1,19 +1,46 @@
 // 建立輸入表單
 const inputList = document.querySelector('#inputShiftTable tbody');
 const employee = document.querySelectorAll('#inputShiftTable tbody tr');
-console.log(employee);
-console.log(employee[employee.length - 1]);
+console.log(inputList);
 
 const btn = document.querySelector('button');
 btn.addEventListener('click', () => {
-    // console.log(employee[0].cells[0].children[0].value);
-    // console.log(employee[0].cells[1].children[0].value);
-    // console.log(employee[0].cells[2].children[0].value);
-    let aa = employee[0].cells[0].children[0].value != '' ? true : false ;
-    let bb = employee[0].cells[1].children[0].value != '' ? true : false ;
-    let cc = employee[0].cells[2].children[0].value != '' ? true : false ;
-    if( aa || bb || cc ){
-        console.log('要加新的一列')
+    let lastInput = employee.length - 1;
+    let isEmployeeCodeEmpty = employee[lastInput].cells[0].children[0].value != '' ? true : false ;
+    let isEmployeeJobTypeEmpty = employee[lastInput].cells[1].children[0].value != '' ? true : false ;
+    let isEmployeeRankEmpty = employee[lastInput].cells[2].children[0].value != '' ? true : false ;
+    if( isEmployeeCodeEmpty || isEmployeeJobTypeEmpty || isEmployeeRankEmpty ){
+        console.log('要加新的一列');
+        let addtr = document.createElement("tr");
+        inputList.append(addtr);
+        let lastchild = inputList .lastElementChild;
+        lastchild.classList.add('employee');
+        lastchild.innerHTML = `
+        <th><input type="text" class="employeeCode"></th>
+        <td>
+            <select class="form-control" name="jobType">
+                <option value="">請選擇職種</option>
+                <option value="FT">正職</option>
+                <option value="PT">PT</option>                    
+            </select>
+        </td>
+        <td>
+            <select class="form-control" name="rank">
+                <option value="">請選擇能力等級</option>
+                <option value="jun">Junior</option>
+                <option value="sen">Senior</option>                    
+            </select>
+        </td>
+        <td><input type="checkbox" name="" id=""></td>
+        <td><input type="checkbox" name="" id=""></td>
+        <td><input type="checkbox" name="" id=""></td>
+        <td><input type="checkbox" name="" id=""></td>
+        <td><input type="checkbox" name="" id=""></td>
+        <td><input type="checkbox" name="" id=""></td>
+        <td><input type="checkbox" name="" id=""></td>
+        `
+    } else {
+        console.log('你還有空格喔')
     }
 })
 
@@ -172,7 +199,7 @@ function FT_NeededPerDay(){
     // 萬一PT早晚皆可上班讓PT優先填滿晚上那個缺
 
 
-    console.log("PT_NeededOnDuty", PT_NeededOnDuty)
+    // console.log("PT_NeededOnDuty", PT_NeededOnDuty)
     // console.log("PT_NeededOnDuty", PT_NeededOnDuty2)
 };
 
@@ -226,7 +253,7 @@ PT_NeededOnDuty2 = [
 PT_canDuty = PT_NeededOnDuty2.map(e => {
     return e.map(e => e.canDuty)
 })
-console.log(PT_canDuty);
+// console.log(PT_canDuty);
 
 const employees = {
     ofDayTime: 0,
@@ -234,7 +261,7 @@ const employees = {
 }
 
 PT_onDuty = PT_canDuty.map(choosePTofNightTime())
-console.log(PT_onDuty)
+// console.log(PT_onDuty)
 function choosePTofNightTime() {
     return e => {
         if (e[employees.ofDayTime].split('').length === e[employees.ofNightTime].split('').length) {
@@ -254,7 +281,7 @@ function choosePTofNightTime() {
             return [daytime, chosenOne];
         }
         else { //if (e[employees.ofDayTime] < e[employees.ofNightTime])
-            console.log('A<B')
+            // console.log('A<B')
             // 先將早晚班人員字串都轉成陣列
             daytimeEmployees = e[employees.ofDayTime].split('');
             nighttimeEmployees = e[employees.ofNightTime].split('');
@@ -269,7 +296,7 @@ function choosePTofNightTime() {
                 return e
             }).join('');
             daytime = [daytime, onlyDaytimePT].join('')
-            console.log(daytime)
+            // console.log(daytime)
             
             nighttimeEmployees = nighttimeEmployees.filter((e, index) => e != daytimeEmployees[index]).join('');
             randon = Math.floor((Math.random() * nighttimeEmployees.length));
