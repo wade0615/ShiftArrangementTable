@@ -1,18 +1,20 @@
 // 建立班表空陣列
-makeResourceForecast()
+let employeeResourceForecast = [];
+
+makeResourceForecast();
 function makeResourceForecast(){
     let getDaytimeForecast = document.querySelectorAll('[name=dayTimeResourceForecast]');
     let daytimeForecastData = Array.from(getDaytimeForecast).map(e => parseInt(e.value, 10));
     let getNightTimeForecast = document.querySelectorAll('[name=nightTimeResourceForecast]');
     let nightTimeForecastData = Array.from(getNightTimeForecast).map(e => parseInt(e.value, 10));
     
-    const employeeResourceForecast = daytimeForecastData.map((daytimeForecastData,i) => {
+    employeeResourceForecast = daytimeForecastData.map((daytimeForecastData,i) => {
         return [daytimeForecastData,nightTimeForecastData[i]];
     });
     
     console.log("makeResourceForecast -> employeeResourceForecast", employeeResourceForecast)
     return employeeResourceForecast;
-}
+};
 
 // 建立輸入表單
 const inputList = document.querySelector('#inputShiftTable tbody');
