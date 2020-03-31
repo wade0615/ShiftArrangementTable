@@ -3,8 +3,9 @@ const inputList = document.querySelector('#inputShiftTable tbody');
 let employee = document.querySelectorAll('#inputShiftTable tbody tr');
 console.log(inputList);
 
-const btn = document.querySelector('button');
-btn.addEventListener('click', () => {
+const addEmployeebtn = document.querySelector('#addEmployee');
+addEmployeebtn.addEventListener('click', () => {
+    let employee = document.querySelectorAll('#inputShiftTable tbody tr');
     let lastInput = employee.length - 1;
     let isEmployeeCodeEmpty = employee[lastInput].cells[0].children[0].value != '' ? true : false ;
     let isEmployeeJobTypeEmpty = employee[lastInput].cells[1].children[0].value != '' ? true : false ;
@@ -30,21 +31,32 @@ btn.addEventListener('click', () => {
                 <option value="sen">Senior</option>                    
             </select>
         </td>
-        <td><input type="checkbox" name="" id=""></td>
-        <td><input type="checkbox" name="" id=""></td>
-        <td><input type="checkbox" name="" id=""></td>
-        <td><input type="checkbox" name="" id=""></td>
-        <td><input type="checkbox" name="" id=""></td>
-        <td><input type="checkbox" name="" id=""></td>
-        <td><input type="checkbox" name="" id=""></td>
+        <td><input type="checkbox" name="" id=""><br><input type="checkbox" name="" id=""></td>
+        <td><input type="checkbox" name="" id=""><br><input type="checkbox" name="" id=""></td>
+        <td><input type="checkbox" name="" id=""><br><input type="checkbox" name="" id=""></td>
+        <td><input type="checkbox" name="" id=""><br><input type="checkbox" name="" id=""></td>
+        <td><input type="checkbox" name="" id=""><br><input type="checkbox" name="" id=""></td>
+        <td><input type="checkbox" name="" id=""><br><input type="checkbox" name="" id=""></td>
+        <td><input type="checkbox" name="" id=""><br><input type="checkbox" name="" id=""></td>
+        <td><button type="button" class="btn btn-danger delEmployee">Del</button></td>
         `
         employee = document.querySelectorAll('#inputShiftTable tbody tr');
         lastInput = employee.length - 1;
+        delEmployee();
     } else {
         console.log('你還有空格喔')
     }
-})
+});
 
+// 點擊刪除按鈕刪除單一員工資料
+function delEmployee(){
+    const delEmployeebtn = document.querySelectorAll('.delEmployee');
+    delEmployeebtn.forEach(e => {
+        e.addEventListener('click', function(){
+        this.closest("tr").remove();
+        })
+    });
+};
 
 //每個物件會有一個員工代號與選擇休假日的陣列，休假陣列用 布林值 表示
     const employeeData = [
