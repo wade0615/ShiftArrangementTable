@@ -1,3 +1,19 @@
+// 建立班表空陣列
+makeResourceForecast()
+function makeResourceForecast(){
+    let getDaytimeForecast = document.querySelectorAll('[name=dayTimeResourceForecast]');
+    let daytimeForecastData = Array.from(getDaytimeForecast).map(e => parseInt(e.value, 10));
+    let getNightTimeForecast = document.querySelectorAll('[name=nightTimeResourceForecast]');
+    let nightTimeForecastData = Array.from(getNightTimeForecast).map(e => parseInt(e.value, 10));
+    
+    const employeeResourceForecast = daytimeForecastData.map((daytimeForecastData,i) => {
+        return [daytimeForecastData,nightTimeForecastData[i]];
+    });
+    
+    console.log("makeResourceForecast -> employeeResourceForecast", employeeResourceForecast)
+    return employeeResourceForecast;
+}
+
 // 建立輸入表單
 const inputList = document.querySelector('#inputShiftTable tbody');
 let employee = document.querySelectorAll('#inputShiftTable tbody tr');
@@ -188,7 +204,8 @@ function delEmployee(){
 
 
 // 每日人力需求預測
-const employeeResourceForecast = Array(7).fill([3,2]);
+// const employeeResourceForecast = Array(7).fill([3,2]);
+// console.log("employeeResourceForecast", employeeResourceForecast)
 
 // PT給出的班表
 var PT_Data = [
