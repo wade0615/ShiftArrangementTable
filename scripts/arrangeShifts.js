@@ -66,13 +66,13 @@ function addEmployeeInput(){
                 <option value="sen">Senior</option>                    
             </select>
         </td>
-        <td><input type="checkbox" name="" id=""><br><input type="checkbox" name="" id=""></td>
-        <td><input type="checkbox" name="" id=""><br><input type="checkbox" name="" id=""></td>
-        <td><input type="checkbox" name="" id=""><br><input type="checkbox" name="" id=""></td>
-        <td><input type="checkbox" name="" id=""><br><input type="checkbox" name="" id=""></td>
-        <td><input type="checkbox" name="" id=""><br><input type="checkbox" name="" id=""></td>
-        <td><input type="checkbox" name="" id=""><br><input type="checkbox" name="" id=""></td>
-        <td><input type="checkbox" name="" id=""><br><input type="checkbox" name="" id=""></td>
+        <td><input type="checkbox" name="daySchedule"><br><input type="checkbox" name="nightSchedule"></td>
+        <td><input type="checkbox" name="daySchedule"><br><input type="checkbox" name="nightSchedule"></td>
+        <td><input type="checkbox" name="daySchedule"><br><input type="checkbox" name="nightSchedule"></td>
+        <td><input type="checkbox" name="daySchedule"><br><input type="checkbox" name="nightSchedule"></td>
+        <td><input type="checkbox" name="daySchedule"><br><input type="checkbox" name="nightSchedule"></td>
+        <td><input type="checkbox" name="daySchedule"><br><input type="checkbox" name="nightSchedule"></td>
+        <td><input type="checkbox" name="daySchedule"><br><input type="checkbox" name="nightSchedule"></td>
         <td><button type="button" class="btn btn-danger delEmployee">Del</button></td>
         `
         employee = document.querySelectorAll('#inputShiftTable tbody tr');
@@ -100,6 +100,8 @@ const makeFTresourceTable = document.querySelector('#makeFTresourceTable');
 makeFTresourceTable.addEventListener('click', buildPT_data)
 
 function buildPT_data(){
+    employee = document.querySelectorAll('#inputShiftTable tbody tr');
+
     newPT_data = Array.from(employee).map(e => {
         let daySchedule = e.querySelectorAll('[name=daySchedule]');
         let nightSchedule = e.querySelectorAll('[name=nightSchedule]');
