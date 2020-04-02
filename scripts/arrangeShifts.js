@@ -95,8 +95,9 @@ function delEmployee(){
 
 // 建立PT資料
 let newPT_data = [];
+const makeFTresourceTable = document.querySelector('#makeFTresourceTable');
+makeFTresourceTable.addEventListener('click', buildPT_data)
 
-buildPT_data()
 function buildPT_data(){
     newPT_data = Array.from(employee).map(e => {
         return {
@@ -106,7 +107,7 @@ function buildPT_data(){
         }
     });
     console.log("newPT_data", newPT_data);
-}
+};
 
 
 //每個物件會有一個員工代號與選擇休假日的陣列，休假陣列用 布林值 表示
