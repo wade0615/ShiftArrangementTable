@@ -96,12 +96,19 @@ function delEmployee(){
 // 建立PT資料
 let newPT_data = [];
 const makeFTresourceTable = document.querySelector('#makeFTresourceTable');
+
 makeFTresourceTable.addEventListener('click', buildPT_data)
 
 function buildPT_data(){
     newPT_data = Array.from(employee).map(e => {
+        let daySchedule = e.querySelectorAll('[name=daySchedule]');
+        let nightSchedule = e.querySelectorAll('[name=nightSchedule]');
+        dayScheduleData = Array.from(daySchedule).map(e => e.checked === true ? 1 : 0);
+        nightScheduleData = Array.from(nightSchedule).map(e => e.checked === true ? 1 : 0);
+        let schedule = dayScheduleData.map((dayScheduleData,i) => [dayScheduleData,nightScheduleData[i]]);
         return {
             code: e.querySelector('[name=PTCode]').value,
+            schedule: schedule,
             jobType: e.querySelector('[name=jobType]').value,
             rank: e.querySelector('[name=rank]').value
         }
