@@ -51,7 +51,7 @@
     </table>
 
     <h2>輸入PT可上班日</h2>
-    <button id="addEmployee">點我</button>
+    <button id="addEmployee">點我新增輸入欄</button>
     <table class="table table-sm table-hover" id="inputShiftTable">
         <thead>
             <tr>
@@ -70,12 +70,12 @@
         </thead>
         <tbody>
             <tr class="employee">
-                <th><input type="text" value="" class="employeeCode"></th>
+                <th><input type="text" name="PTCode" value="" class="employeeCode"></th>
                 <td>
                     <select class="form-control" name="jobType">
                         <option value="">請選擇職種</option>
                         <option value="FT">正職</option>
-                        <option value="PT">PT</option>                    
+                        <option value="PT" selected>PT</option>                    
                     </select>
                 </td>
                 <td>
@@ -95,7 +95,7 @@
                 <td><button type="button" class="btn btn-danger delEmployee">Del</button></td>
             </tr>
         </tbody>
-    </table>
+    </table>    
 
     <h2>班表生成結果</h2>
     <table class="table table-sm table-hover" id="resultShiftTable">
