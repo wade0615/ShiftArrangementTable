@@ -11,4 +11,9 @@ body {
   border-bottom: solid 1px black;
   width: 60%;
 }
+
+#makeFTresourceTable {
+  display: block;
+  margin-left: auto;
+}
 /*# sourceMappingURL=arrangeShifts.css.map */
