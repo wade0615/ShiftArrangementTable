@@ -210,7 +210,7 @@ PT_NeededOnDuty2 = [
 PT_canDuty = PT_NeededOnDuty2.map(e => {
     return e.map(e => e.canDuty)
 })
-// console.log(PT_canDuty);
+console.log(PT_canDuty);
 
 const employees = {
     ofDayTime: 0,
@@ -218,7 +218,7 @@ const employees = {
 }
 
 PT_onDuty = PT_canDuty.map(choosePTofNightTime())
-// console.log(PT_onDuty)
+console.log(PT_onDuty)
 function choosePTofNightTime() {
     return e => {
         if (e[employees.ofDayTime].split('').length === e[employees.ofNightTime].split('').length) {
