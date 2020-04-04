@@ -2,7 +2,7 @@
 let employeeResourceForecast = [];
 
 // 建立預估人力陣列
-function makeResourceForecast(){
+function makeResourceForecast(employeeResourceForecast){
     let getDaytimeForecast = document.querySelectorAll('[name=dayTimeResourceForecast]');
     let daytimeForecastData = Array.from(getDaytimeForecast).map(e => parseInt(e.value, 10));
     let getNightTimeForecast = document.querySelectorAll('[name=nightTimeResourceForecast]');
@@ -94,7 +94,7 @@ function delEmployee(){
 };
 
 // 建立PT資料
-let PT_data = [];
+let PT_Data = [];
 const makeFTresourceTable = document.querySelector('#makeFTresourceTable');
 
 // 主程式觸發條件：點擊輸出按鈕，逐一 callFunction 計算結果
@@ -103,18 +103,28 @@ makeFTresourceTable.addEventListener('click', mainFunction)
 // 主程式：
 function mainFunction(){
     // 建立預估人力陣列
-    makeResourceForecast();
+    employeeResourceForecast = makeResourceForecast(employeeResourceForecast);
     // 建立 PT 的資料
-    buildPT_data();
-    // 現階段先得知每天需要多少PT，跟有誰可以上班
-    FT_NeededPerDay(PT_data);
+    PT_Data = buildPT_Data(PT_Data);
+    
+    //建立一個新data，將布林值轉換成各員工代號
+    let PT_Data_InName = PT_Data_ToName(PT_Data);
+    // PT人力需求預測
+    const PT_ResourceForecast = employeeResourceForecast.map(dayForecast => dayForecast.map(e => e - 1));
+    console.log("PT_ResourceForecast", PT_ResourceForecast);
+    // 列出 PT 需求人數與可上班人員
+    PT_NeededOnDuty = list_PT_onDutyTable(PT_ResourceForecast,PT_Data_InName);
+    console.log("PT_NeededOnDuty", PT_NeededOnDuty);
+
+    // // 現階段先得知每天需要多少PT，跟有誰可以上班
+    // FT_NeededPerDay(PT_Data);
 }
 
 // 依照 DOM 表單輸入的值，建立 PT 的資料
-function buildPT_data(){
+function buildPT_Data(PT_Data){
     employee = document.querySelectorAll('#inputShiftTable tbody tr');
 
-    PT_data = Array.from(employee).map(e => {
+    PT_Data = Array.from(employee).map(e => {
         let daySchedule = e.querySelectorAll('[name=daySchedule]');
         let nightSchedule = e.querySelectorAll('[name=nightSchedule]');
         dayScheduleData = Array.from(daySchedule).map(e => e.checked === true ? 1 : 0);
@@ -127,23 +137,21 @@ function buildPT_data(){
             rank: e.querySelector('[name=rank]').value
         }
     });
-    console.log("PT_data", PT_data);
-    return PT_data
+    return PT_Data
 };
 
 
 // 每日人力需求預測////////////////////////////////////////////
 
-function FT_NeededPerDay(PT_Data){
-    //建立一個新data，將布林值轉換成各員工代號
-    PT_Data_InName = PT_Data_ToName(PT_Data);
-
-    // PT人力需求預測
-    const PT_ResourceForecast = employeeResourceForecast.map(dayForecast => dayForecast.map(e => e - 1));
-    console.log("PT_ResourceForecast", PT_ResourceForecast)
-    // 列出 PT 需求人數與可上班人員
-    PT_NeededOnDuty = list_PT_onDutyTable(PT_ResourceForecast)
-    console.log("PT_NeededOnDuty", PT_NeededOnDuty)
+function FT_NeededPerDay(){
+    // //建立一個新data，將布林值轉換成各員工代號
+    // PT_Data_InName = PT_Data_ToName(PT_Data);
+    // // PT人力需求預測
+    // const PT_ResourceForecast = employeeResourceForecast.map(dayForecast => dayForecast.map(e => e - 1));
+    // console.log("PT_ResourceForecast", PT_ResourceForecast)
+    // // 列出 PT 需求人數與可上班人員
+    // PT_NeededOnDuty = list_PT_onDutyTable(PT_ResourceForecast)
+    // console.log("PT_NeededOnDuty", PT_NeededOnDuty)
 
     // 萬一PT早晚皆可上班讓PT優先填滿晚上那個缺
 
@@ -169,7 +177,7 @@ function PT_Data_ToName(PT_Data){
 };
 
 // 列出 PT 需求人數與可上班人員
-function list_PT_onDutyTable(PT_ResourceForecast) {
+function list_PT_onDutyTable(PT_ResourceForecast,PT_Data_InName) {
     return PT_ResourceForecast.map((ResourceForecastPerDay,index) => {
         return ResourceForecastPerDay.map((Shift,idx) => {
             PT_onDuty = PT_Data_InName.map(e => e.schedule[index][idx]).join('');
