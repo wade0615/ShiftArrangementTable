@@ -1,9 +1,14 @@
 h1 {
-  font-size: 40px;
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
 }
 
 body {
   padding: 50px;
+}
+
+section {
+  margin-bottom: 2rem;
 }
 
 .employee {
