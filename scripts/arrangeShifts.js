@@ -1,3 +1,36 @@
+// 主程式觸發條件：點擊輸出按鈕，逐一 callFunction 計算結果
+const makeFTresourceTable = document.querySelector('#makeFTresourceTable');
+makeFTresourceTable.addEventListener('click', mainFunction)
+
+// 主程式：
+function mainFunction(){
+    // 建立預估人力陣列
+    employeeResourceForecast = makeResourceForecast(employeeResourceForecast);
+    // 建立 PT 的資料
+    PT_Data = buildPT_Data(PT_Data);
+    
+    //建立一個新data，將布林值轉換成各員工代號
+    let PT_Data_InName = PT_Data_ToName(PT_Data);
+    // PT人力需求預測
+    const PT_ResourceForecast = employeeResourceForecast.map(dayForecast => dayForecast.map(e => e - 1));
+    console.log("PT_ResourceForecast", PT_ResourceForecast);
+    // 列出 PT 需求人數與可上班人員
+    PT_NeededOnDuty = list_PT_onDutyTable(PT_ResourceForecast,PT_Data_InName);
+    console.log("PT_NeededOnDuty", PT_NeededOnDuty);
+
+    // 在空空的結果列表中<tr>中放入我要放的<th>跟<td>*7
+    createListElement();
+
+    // 在結果班表中的 早 班班表區放入PT需求人數與可用人員
+    createDaytimeShiftTable(PT_NeededOnDuty);
+
+    // 在結果班表中的 晚 班班表區放入PT需求人數與可用人員
+    createNighttimeShiftTable(PT_NeededOnDuty);
+
+    // // 現階段先得知每天需要多少PT，跟有誰可以上班
+    // FT_NeededPerDay(PT_Data);
+};
+
 // 建立班表空陣列
 let employeeResourceForecast = [];
 
@@ -95,39 +128,6 @@ function delEmployee(){
 
 // 建立PT資料
 let PT_Data = [];
-const makeFTresourceTable = document.querySelector('#makeFTresourceTable');
-
-// 主程式觸發條件：點擊輸出按鈕，逐一 callFunction 計算結果
-makeFTresourceTable.addEventListener('click', mainFunction)
-
-// 主程式：
-function mainFunction(){
-    // 建立預估人力陣列
-    employeeResourceForecast = makeResourceForecast(employeeResourceForecast);
-    // 建立 PT 的資料
-    PT_Data = buildPT_Data(PT_Data);
-    
-    //建立一個新data，將布林值轉換成各員工代號
-    let PT_Data_InName = PT_Data_ToName(PT_Data);
-    // PT人力需求預測
-    const PT_ResourceForecast = employeeResourceForecast.map(dayForecast => dayForecast.map(e => e - 1));
-    console.log("PT_ResourceForecast", PT_ResourceForecast);
-    // 列出 PT 需求人數與可上班人員
-    PT_NeededOnDuty = list_PT_onDutyTable(PT_ResourceForecast,PT_Data_InName);
-    console.log("PT_NeededOnDuty", PT_NeededOnDuty);
-
-    // 在空空的結果列表中<tr>中放入我要放的<th>跟<td>*7
-    createListElement();
-
-    // 在結果班表中的 早 班班表區放入PT需求人數與可用人員
-    createDaytimeShiftTable(PT_NeededOnDuty);
-
-    // 在結果班表中的 晚 班班表區放入PT需求人數與可用人員
-    createNighttimeShiftTable(PT_NeededOnDuty);
-
-    // // 現階段先得知每天需要多少PT，跟有誰可以上班
-    // FT_NeededPerDay(PT_Data);
-}
 
 // 依照 DOM 表單輸入的值，建立 PT 的資料
 function buildPT_Data(PT_Data){
