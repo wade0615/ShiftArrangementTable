@@ -116,6 +116,15 @@ function mainFunction(){
     PT_NeededOnDuty = list_PT_onDutyTable(PT_ResourceForecast,PT_Data_InName);
     console.log("PT_NeededOnDuty", PT_NeededOnDuty);
 
+    // 在空空的結果列表中<tr>中放入我要放的<th>跟<td>*7
+    createListElement();
+
+    // 在結果班表中的 早 班班表區放入PT需求人數與可用人員
+    createDaytimeShiftTable(PT_NeededOnDuty);
+
+    // 在結果班表中的 晚 班班表區放入PT需求人數與可用人員
+    createNighttimeShiftTable(PT_NeededOnDuty);
+
     // // 現階段先得知每天需要多少PT，跟有誰可以上班
     // FT_NeededPerDay(PT_Data);
 }
@@ -187,7 +196,27 @@ function list_PT_onDutyTable(PT_ResourceForecast,PT_Data_InName) {
             }
         })
     });
-}
+};
+
+// 在結果班表中的 早 班班表區放入PT需求人數與可用人員
+function createDaytimeShiftTable(PT_NeededOnDuty){
+    const dayTitle = document.querySelector('#resultShiftTable #dayShiftTable th');
+    dayTitle.innerHTML = '早班PT資訊';
+    const dayList = document.querySelectorAll('#resultShiftTable #dayShiftTable td');
+    dayList.forEach((e,index) => {
+        e.innerHTML = `${PT_NeededOnDuty[index][0].Needed},${PT_NeededOnDuty[index][0].canDuty}`;
+    });
+};
+
+// 在結果班表中的 晚 班班表區放入PT需求人數與可用人員
+function createNighttimeShiftTable(PT_NeededOnDuty){
+    const nightTitle = document.querySelector('#resultShiftTable #nightShiftTable th');
+    nightTitle.innerHTML = '晚班PT資訊';
+    const nightList = document.querySelectorAll('#resultShiftTable #nightShiftTable td');
+    nightList.forEach((e,index) => {
+        e.innerHTML = `${PT_NeededOnDuty[index][1].Needed},${PT_NeededOnDuty[index][1].canDuty}`;
+    });
+};
 
 // 整理邏輯
 // 若早晚人員相同，隨機取一位給晚班，剩餘人員早班
@@ -360,17 +389,17 @@ function createListElement(){
 };
 
 // 將 shiftTable 大陣列中的senior班表放入DOM表單
-function createSeniorShiftTable(shiftTable){
-    const senTitle = document.querySelector('#resultShiftTable .senlist th');
-    senTitle.innerHTML = '壓粉奶泡手';
-    const senList = document.querySelectorAll('#resultShiftTable .senlist td');
-    senList.forEach((e,index) => {
-        e.innerHTML = shiftTable[index][0]
-            .split('')
-            .map(e => `<span>${e}</span>`)
-            .join('');
-    });
-};
+// function createSeniorShiftTable(shiftTable){
+//     const senTitle = document.querySelector('#resultShiftTable .senlist th');
+//     senTitle.innerHTML = '壓粉奶泡手';
+//     const senList = document.querySelectorAll('#resultShiftTable .senlist td');
+//     senList.forEach((e,index) => {
+//         e.innerHTML = shiftTable[index][0]
+//             .split('')
+//             .map(e => `<span>${e}</span>`)
+//             .join('');
+//     });
+// };
 
 // 將 shiftTable 大陣列中的junior班表放入DOM表單
 function createJuniorShiftTable(shiftTable){
