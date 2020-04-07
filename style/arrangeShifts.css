@@ -14,7 +14,11 @@ section {
 .employee {
   border: transparent;
   border-bottom: solid 1px black;
-  width: 60%;
+}
+
+.decorationLine {
+  border: solid 1px #9c9c9cb9;
+  border-radius: 5px;
 }
 
 #makeFTresourceTable {

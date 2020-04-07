@@ -12,7 +12,7 @@
 <body>
     <h1>Shift Arrangement Table 班表系統</h1>
 
-    <section>
+    <section class="table-responsive">
     <h2>輸入預估人力表</h2>
     <table class="table table-sm table-hover" id="resourceForecast">
         <thead>
@@ -30,31 +30,31 @@
         <tbody>
             <tr class="employee">
                 <th>早班</th>
-                <td><input type="number" value="3" min="0" max="4" name="dayTimeResourceForecast"></td>
-                <td><input type="number" value="3" min="0" max="4" name="dayTimeResourceForecast"></td>
-                <td><input type="number" value="3" min="0" max="4" name="dayTimeResourceForecast"></td>
-                <td><input type="number" value="3" min="0" max="4" name="dayTimeResourceForecast"></td>
-                <td><input type="number" value="3" min="0" max="4" name="dayTimeResourceForecast"></td>
-                <td><input type="number" value="3" min="0" max="4" name="dayTimeResourceForecast"></td>
-                <td><input type="number" value="3" min="0" max="4" name="dayTimeResourceForecast"></td>
+                <td><input class="decorationLine" type="number" value="3" min="0" max="4" name="dayTimeResourceForecast"></td>
+                <td><input class="decorationLine" type="number" value="3" min="0" max="4" name="dayTimeResourceForecast"></td>
+                <td><input class="decorationLine" type="number" value="3" min="0" max="4" name="dayTimeResourceForecast"></td>
+                <td><input class="decorationLine" type="number" value="3" min="0" max="4" name="dayTimeResourceForecast"></td>
+                <td><input class="decorationLine" type="number" value="3" min="0" max="4" name="dayTimeResourceForecast"></td>
+                <td><input class="decorationLine" type="number" value="3" min="0" max="4" name="dayTimeResourceForecast"></td>
+                <td><input class="decorationLine" type="number" value="3" min="0" max="4" name="dayTimeResourceForecast"></td>
             </tr>
             <tr class="employee">
                 <th>晚班</th>
-                <td><input type="number" value="2" min="0" max="4" name="nightTimeResourceForecast"></td>
-                <td><input type="number" value="2" min="0" max="4" name="nightTimeResourceForecast"></td>
-                <td><input type="number" value="2" min="0" max="4" name="nightTimeResourceForecast"></td>
-                <td><input type="number" value="2" min="0" max="4" name="nightTimeResourceForecast"></td>
-                <td><input type="number" value="2" min="0" max="4" name="nightTimeResourceForecast"></td>
-                <td><input type="number" value="2" min="0" max="4" name="nightTimeResourceForecast"></td>
-                <td><input type="number" value="2" min="0" max="4" name="nightTimeResourceForecast"></td>
+                <td><input class="decorationLine" type="number" value="2" min="0" max="4" name="nightTimeResourceForecast"></td>
+                <td><input class="decorationLine" type="number" value="2" min="0" max="4" name="nightTimeResourceForecast"></td>
+                <td><input class="decorationLine" type="number" value="2" min="0" max="4" name="nightTimeResourceForecast"></td>
+                <td><input class="decorationLine" type="number" value="2" min="0" max="4" name="nightTimeResourceForecast"></td>
+                <td><input class="decorationLine" type="number" value="2" min="0" max="4" name="nightTimeResourceForecast"></td>
+                <td><input class="decorationLine" type="number" value="2" min="0" max="4" name="nightTimeResourceForecast"></td>
+                <td><input class="decorationLine" type="number" value="2" min="0" max="4" name="nightTimeResourceForecast"></td>
             </tr>
         </tbody>
     </table>
     </section>
 
-    <section>
+    <section class="table-responsive">
     <h2>輸入PT可上班日</h2>
-    <button id="addEmployee">新增輸入欄</button>
+    <button type="button" class="btn btn-success" id="addEmployee">新增輸入欄</button>
     <table class="table table-sm table-hover" id="inputShiftTable">
         <thead>
             <tr>
@@ -124,8 +124,8 @@
             </tr>
         </tbody>
     </table> 
-    <button id="makeFTresourceTable">輸出每天需要多少正職人員</button>
     </section>
+    <button type="button" class="btn btn-info" id="makeFTresourceTable">輸出每天需要多少正職人員</button>
 
     <section>
     <h2>各班別 PT 需求人數與 可選用職員</h2>
