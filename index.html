@@ -52,9 +52,9 @@
     </table>
     </section>
 
-    <section class="table-responsive">
+    <section class="table-responsive" id="app">
     <h2>輸入PT可上班日</h2>
-    <button type="button" class="btn btn-success" id="addEmployee">新增輸入欄</button>
+    <button v-on:click='aaa()' type="button" class="btn btn-success" id="addEmployee">新增輸入欄</button>
     <table class="table table-sm table-hover" id="inputShiftTable">
         <thead>
             <tr>
@@ -161,7 +161,10 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    <!-- 引入Vue -->
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <!-- My JS -->
-    <script src="scripts/arrangeShifts.js"></script>
+    <script src="scripts/index.js"></script>
+    <script src="scripts/vue.js"></script>
 </body>
 </html>
