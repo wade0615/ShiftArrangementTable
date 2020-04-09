@@ -4,7 +4,19 @@ h1 {
 }
 
 body {
-  padding: 50px;
+  padding: 1rem;
+}
+
+@media (min-width: 576px) {
+  body {
+    padding: 3rem;
+  }
+}
+
+@media (min-width: 768px) {
+  body {
+    padding: 5rem;
+  }
 }
 
 section {

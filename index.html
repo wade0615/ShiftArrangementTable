@@ -56,108 +56,109 @@
     <h2>輸入PT可上班日</h2>
     <button v-on:click='addEmployeeInput()' type="button" class="btn btn-success" id="addEmployee">新增輸入欄</button>
     <div class="table-responsive">
-
-    <table class="table table-sm table-hover" id="inputShiftTable">
-        <thead>
-            <tr>
-                <th scope="col">代號</th>
-                <th scope="col">職種</th>
-                <th scope="col">等級</th>
-                <th scope="col">一</th>
-                <th scope="col">二</th>
-                <th scope="col">三</th>
-                <th scope="col">四</th>
-                <th scope="col">五</th>
-                <th scope="col">六</th>
-                <th scope="col">日</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr class="employee">
-                <th><input type="text" name="PTCode" value="Q" class="decorationLine employeeCode"></th>
-                <td>
-                    <select class="jobType form-control" name="jobType">
-                        <option value="">請選擇職種</option>
-                        <option value="FT">正職</option>
-                        <option value="PT" selected>PT</option>                    
-                    </select>
-                </td>
-                <td>
-                    <select class="rank form-control" name="rank">
-                        <option value="">請選擇能力等級</option>
-                        <option value="jun">Junior</option>
-                        <option value="sen" selected>Senior</option>                    
-                    </select>
-                </td>
-                <td><input type="checkbox" name="daySchedule"><br><input type="checkbox" name="nightSchedule"></td>
-                <td><input type="checkbox" name="daySchedule"><br><input type="checkbox" name="nightSchedule"></td>
-                <td><input type="checkbox" name="daySchedule"><br><input type="checkbox" name="nightSchedule"></td>
-                <td><input type="checkbox" name="daySchedule"><br><input type="checkbox" name="nightSchedule"></td>
-                <td><input type="checkbox" name="daySchedule"><br><input type="checkbox" name="nightSchedule"></td>
-                <td><input type="checkbox" name="daySchedule"><br><input type="checkbox" name="nightSchedule"></td>
-                <td><input type="checkbox" name="daySchedule"><br><input type="checkbox" name="nightSchedule"></td>
-                <td><button type="button" class="btn btn-danger delEmployee">Del</button></td>
-            </tr>
-            <tr class="employee">
-                <th><input type="text" name="PTCode" value="R" class="decorationLine employeeCode"></th>
-                <td>
-                    <select class="jobType form-control" name="jobType">
-                        <option value="">職稱</option>
-                        <option value="FT">正職</option>
-                        <option value="PT" selected>PT</option>                    
-                    </select>
-                </td>
-                <td>
-                    <select class="rank form-control" name="rank">
-                        <option value="">能力階級</option>
-                        <option value="jun" selected>Junior</option>
-                        <option value="sen">Senior</option>
-                    </select>
-                </td>
-                <td><input type="checkbox" name="daySchedule"><br><input type="checkbox" name="nightSchedule"></td>
-                <td><input type="checkbox" name="daySchedule"><br><input type="checkbox" name="nightSchedule"></td>
-                <td><input type="checkbox" name="daySchedule"><br><input type="checkbox" name="nightSchedule"></td>
-                <td><input type="checkbox" name="daySchedule"><br><input type="checkbox" name="nightSchedule"></td>
-                <td><input type="checkbox" name="daySchedule"><br><input type="checkbox" name="nightSchedule"></td>
-                <td><input type="checkbox" name="daySchedule"><br><input type="checkbox" name="nightSchedule"></td>
-                <td><input type="checkbox" name="daySchedule"><br><input type="checkbox" name="nightSchedule"></td>
-                <td><button type="button" class="btn btn-danger delEmployee">Del</button></td>
-            </tr>
-        </tbody>
-    </table> 
+        <table class="table table-sm table-hover" id="inputShiftTable">
+            <thead>
+                <tr>
+                    <th scope="col">代號</th>
+                    <th scope="col">職種</th>
+                    <th scope="col">等級</th>
+                    <th scope="col">一</th>
+                    <th scope="col">二</th>
+                    <th scope="col">三</th>
+                    <th scope="col">四</th>
+                    <th scope="col">五</th>
+                    <th scope="col">六</th>
+                    <th scope="col">日</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="employee">
+                    <th><input type="text" name="PTCode" value="Q" class="decorationLine employeeCode"></th>
+                    <td>
+                        <select class="jobType form-control" name="jobType">
+                            <option value="">職稱</option>
+                            <option value="FT">正職</option>
+                            <option value="PT" selected>PT</option>                    
+                        </select>
+                    </td>
+                    <td>
+                        <select class="rank form-control" name="rank">
+                            <option value="">能力階級</option>
+                            <option value="jun">Junior</option>
+                            <option value="sen" selected>Senior</option>                    
+                        </select>
+                    </td>
+                    <td><input type="checkbox" name="daySchedule"><br><input type="checkbox" name="nightSchedule"></td>
+                    <td><input type="checkbox" name="daySchedule"><br><input type="checkbox" name="nightSchedule"></td>
+                    <td><input type="checkbox" name="daySchedule"><br><input type="checkbox" name="nightSchedule"></td>
+                    <td><input type="checkbox" name="daySchedule"><br><input type="checkbox" name="nightSchedule"></td>
+                    <td><input type="checkbox" name="daySchedule"><br><input type="checkbox" name="nightSchedule"></td>
+                    <td><input type="checkbox" name="daySchedule"><br><input type="checkbox" name="nightSchedule"></td>
+                    <td><input type="checkbox" name="daySchedule"><br><input type="checkbox" name="nightSchedule"></td>
+                    <td><button type="button" class="btn btn-danger delEmployee">Del</button></td>
+                </tr>
+                <tr class="employee">
+                    <th><input type="text" name="PTCode" value="R" class="decorationLine employeeCode"></th>
+                    <td>
+                        <select class="jobType form-control" name="jobType">
+                            <option value="">職稱</option>
+                            <option value="FT">正職</option>
+                            <option value="PT" selected>PT</option>                    
+                        </select>
+                    </td>
+                    <td>
+                        <select class="rank form-control" name="rank">
+                            <option value="">能力階級</option>
+                            <option value="jun" selected>Junior</option>
+                            <option value="sen">Senior</option>
+                        </select>
+                    </td>
+                    <td><input type="checkbox" name="daySchedule"><br><input type="checkbox" name="nightSchedule"></td>
+                    <td><input type="checkbox" name="daySchedule"><br><input type="checkbox" name="nightSchedule"></td>
+                    <td><input type="checkbox" name="daySchedule"><br><input type="checkbox" name="nightSchedule"></td>
+                    <td><input type="checkbox" name="daySchedule"><br><input type="checkbox" name="nightSchedule"></td>
+                    <td><input type="checkbox" name="daySchedule"><br><input type="checkbox" name="nightSchedule"></td>
+                    <td><input type="checkbox" name="daySchedule"><br><input type="checkbox" name="nightSchedule"></td>
+                    <td><input type="checkbox" name="daySchedule"><br><input type="checkbox" name="nightSchedule"></td>
+                    <td><button type="button" class="btn btn-danger delEmployee">Del</button></td>
+                </tr>
+            </tbody>
+        </table> 
     </div>
     </section>
     <button type="button" class="btn btn-info" id="makeFTresourceTable">輸出每天需要多少正職人員</button>
 
     <section>
     <h2>各班別 PT 需求人數與 可選用職員</h2>
-    <table class="table table-sm table-hover" id="resultShiftTable">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">一</th>
-                <th scope="col">二</th>
-                <th scope="col">三</th>
-                <th scope="col">四</th>
-                <th scope="col">五</th>
-                <th scope="col">六</th>
-                <th scope="col">日</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr id="dayShiftTable" class="senlist">
-                <th>早班</th>
-                <!-- <td>2個FT</td>
-                <td>2個FT</td> -->
-            </tr>
-            <tr id="nightShiftTable" class="junlist">
-                <th>晚班</th>
-                <!-- <td>1個FT</td>
-                <td>1個FT</td> -->
-            </tr>
-        </tbody>
-    </table>
+    <div class="table-responsive">
+        <table class="table table-sm table-hover" id="resultShiftTable">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">一</th>
+                    <th scope="col">二</th>
+                    <th scope="col">三</th>
+                    <th scope="col">四</th>
+                    <th scope="col">五</th>
+                    <th scope="col">六</th>
+                    <th scope="col">日</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr id="dayShiftTable" class="senlist">
+                    <th>早班</th>
+                    <!-- <td>2個FT</td>
+                    <td>2個FT</td> -->
+                </tr>
+                <tr id="nightShiftTable" class="junlist">
+                    <th>晚班</th>
+                    <!-- <td>1個FT</td>
+                    <td>1個FT</td> -->
+                </tr>
+            </tbody>
+        </table>
+    </div>
     </section>
 
     <!-- 引入bootstrap -->
