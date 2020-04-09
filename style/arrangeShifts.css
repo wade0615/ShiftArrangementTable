@@ -16,6 +16,22 @@ section {
   border-bottom: solid 1px black;
 }
 
+.employeeCode {
+  width: 2rem;
+  height: calc(2.25rem + 2px);
+}
+
+.jobType {
+  width: 3rem;
+  padding: 0;
+}
+
+.rank {
+  width: 5rem;
+  padding: 0;
+  font-size: 0.9rem;
+}
+
 .decorationLine {
   border: solid 1px #9c9c9cb9;
   border-radius: 5px;
@@ -24,5 +40,6 @@ section {
 #makeFTresourceTable {
   display: block;
   margin-left: auto;
+  margin-bottom: 2rem;
 }
 /*# sourceMappingURL=arrangeShifts.css.map */

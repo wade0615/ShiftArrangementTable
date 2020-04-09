@@ -15,17 +15,17 @@ new Vue({
                 let lastchild = inputList.lastElementChild;
                 lastchild.classList.add('employee');
                 lastchild.innerHTML = `
-                <th><input type="text" name="PTCode" class="employeeCode"></th>
+                <th><input type="text" name="PTCode" class="decorationLine employeeCode"></th>
                 <td>
-                    <select class="form-control" name="jobType">
-                        <option value="">請選擇職種</option>
+                    <select class="jobType form-control" name="jobType">
+                        <option value="">職稱</option>
                         <option value="FT">正職</option>
                         <option value="PT" selected>PT</option>                    
                     </select>
                 </td>
                 <td>
-                    <select class="form-control" name="rank">
-                        <option value="">請選擇能力等級</option>
+                    <select class="rank form-control" name="rank">
+                        <option value="">能力階級</option>
                         <option value="jun">Junior</option>
                         <option value="sen">Senior</option>                    
                     </select>

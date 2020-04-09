@@ -52,9 +52,11 @@
     </table>
     </section>
 
-    <section class="table-responsive" id="app">
+    <section id="app">
     <h2>輸入PT可上班日</h2>
     <button v-on:click='addEmployeeInput()' type="button" class="btn btn-success" id="addEmployee">新增輸入欄</button>
+    <div class="table-responsive">
+
     <table class="table table-sm table-hover" id="inputShiftTable">
         <thead>
             <tr>
@@ -73,16 +75,16 @@
         </thead>
         <tbody>
             <tr class="employee">
-                <th><input type="text" name="PTCode" value="Q" class="employeeCode"></th>
+                <th><input type="text" name="PTCode" value="Q" class="decorationLine employeeCode"></th>
                 <td>
-                    <select class="form-control" name="jobType">
+                    <select class="jobType form-control" name="jobType">
                         <option value="">請選擇職種</option>
                         <option value="FT">正職</option>
                         <option value="PT" selected>PT</option>                    
                     </select>
                 </td>
                 <td>
-                    <select class="form-control" name="rank">
+                    <select class="rank form-control" name="rank">
                         <option value="">請選擇能力等級</option>
                         <option value="jun">Junior</option>
                         <option value="sen" selected>Senior</option>                    
@@ -98,17 +100,17 @@
                 <td><button type="button" class="btn btn-danger delEmployee">Del</button></td>
             </tr>
             <tr class="employee">
-                <th><input type="text" name="PTCode" value="R" class="employeeCode"></th>
+                <th><input type="text" name="PTCode" value="R" class="decorationLine employeeCode"></th>
                 <td>
-                    <select class="form-control" name="jobType">
-                        <option value="">請選擇職種</option>
+                    <select class="jobType form-control" name="jobType">
+                        <option value="">職稱</option>
                         <option value="FT">正職</option>
                         <option value="PT" selected>PT</option>                    
                     </select>
                 </td>
                 <td>
-                    <select class="form-control" name="rank">
-                        <option value="">請選擇能力等級</option>
+                    <select class="rank form-control" name="rank">
+                        <option value="">能力階級</option>
                         <option value="jun" selected>Junior</option>
                         <option value="sen">Senior</option>
                     </select>
@@ -124,6 +126,7 @@
             </tr>
         </tbody>
     </table> 
+    </div>
     </section>
     <button type="button" class="btn btn-info" id="makeFTresourceTable">輸出每天需要多少正職人員</button>
 

@@ -180,7 +180,7 @@ function list_PT_onDutyTable(PT_ResourceForecast,PT_Data_InName) {
 // 在結果班表中的 早 班班表區放入PT需求人數與可用人員
 function createDaytimeShiftTable(PT_NeededOnDuty){
     const dayTitle = document.querySelector('#resultShiftTable #dayShiftTable th');
-    dayTitle.innerHTML = '早班PT資訊';
+    dayTitle.innerHTML = '早班ＰＴ';
     const dayList = document.querySelectorAll('#resultShiftTable #dayShiftTable td');
     dayList.forEach((e,index) => {
         e.innerHTML = `${PT_NeededOnDuty[index][0].Needed},${PT_NeededOnDuty[index][0].canDuty}`;
@@ -190,7 +190,7 @@ function createDaytimeShiftTable(PT_NeededOnDuty){
 // 在結果班表中的 晚 班班表區放入PT需求人數與可用人員
 function createNighttimeShiftTable(PT_NeededOnDuty){
     const nightTitle = document.querySelector('#resultShiftTable #nightShiftTable th');
-    nightTitle.innerHTML = '晚班PT資訊';
+    nightTitle.innerHTML = '晚班ＰＴ';
     const nightList = document.querySelectorAll('#resultShiftTable #nightShiftTable td');
     nightList.forEach((e,index) => {
         e.innerHTML = `${PT_NeededOnDuty[index][1].Needed},${PT_NeededOnDuty[index][1].canDuty}`;
