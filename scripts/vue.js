@@ -1,5 +1,81 @@
-new Vue({
-    el:'#app',
+Vue.component('input-shifttable-list', {
+    template: 
+    `<div class="table-responsive">
+        <table class="table table-sm table-hover" id="inputShiftTable">
+            <thead>
+                <tr>
+                    <th scope="col">代號</th>
+                    <th scope="col">職種</th>
+                    <th scope="col">等級</th>
+                    <th scope="col">一</th>
+                    <th scope="col">二</th>
+                    <th scope="col">三</th>
+                    <th scope="col">四</th>
+                    <th scope="col">五</th>
+                    <th scope="col">六</th>
+                    <th scope="col">日</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="employee">
+                    <th><input type="text" name="PTCode" value="Q" class="decorationLine employeeCode"></th>
+                    <td>
+                        <select class="jobType form-control" name="jobType">
+                            <option value="">職稱</option>
+                            <option value="FT">正職</option>
+                            <option value="PT" selected>PT</option>                    
+                        </select>
+                    </td>
+                    <td>
+                        <select class="rank form-control" name="rank">
+                            <option value="">能力階級</option>
+                            <option value="jun">Junior</option>
+                            <option value="sen" selected>Senior</option>                    
+                        </select>
+                    </td>
+                    <td><input type="checkbox" name="daySchedule"><br><input type="checkbox" name="nightSchedule"></td>
+                    <td><input type="checkbox" name="daySchedule"><br><input type="checkbox" name="nightSchedule"></td>
+                    <td><input type="checkbox" name="daySchedule"><br><input type="checkbox" name="nightSchedule"></td>
+                    <td><input type="checkbox" name="daySchedule"><br><input type="checkbox" name="nightSchedule"></td>
+                    <td><input type="checkbox" name="daySchedule"><br><input type="checkbox" name="nightSchedule"></td>
+                    <td><input type="checkbox" name="daySchedule"><br><input type="checkbox" name="nightSchedule"></td>
+                    <td><input type="checkbox" name="daySchedule"><br><input type="checkbox" name="nightSchedule"></td>
+                    <td><button type="button" class="btn btn-danger delEmployee">Del</button></td>
+                </tr>
+                <tr class="employee">
+                    <th><input type="text" name="PTCode" value="R" class="decorationLine employeeCode"></th>
+                    <td>
+                        <select class="jobType form-control" name="jobType">
+                            <option value="">職稱</option>
+                            <option value="FT">正職</option>
+                            <option value="PT" selected>PT</option>                    
+                        </select>
+                    </td>
+                    <td>
+                        <select class="rank form-control" name="rank">
+                            <option value="">能力階級</option>
+                            <option value="jun" selected>Junior</option>
+                            <option value="sen">Senior</option>
+                        </select>
+                    </td>
+                    <td><input type="checkbox" name="daySchedule"><br><input type="checkbox" name="nightSchedule"></td>
+                    <td><input type="checkbox" name="daySchedule"><br><input type="checkbox" name="nightSchedule"></td>
+                    <td><input type="checkbox" name="daySchedule"><br><input type="checkbox" name="nightSchedule"></td>
+                    <td><input type="checkbox" name="daySchedule"><br><input type="checkbox" name="nightSchedule"></td>
+                    <td><input type="checkbox" name="daySchedule"><br><input type="checkbox" name="nightSchedule"></td>
+                    <td><input type="checkbox" name="daySchedule"><br><input type="checkbox" name="nightSchedule"></td>
+                    <td><input type="checkbox" name="daySchedule"><br><input type="checkbox" name="nightSchedule"></td>
+                    <td><button type="button" class="btn btn-danger delEmployee">Del</button></td>
+                </tr>
+            </tbody>
+        </table> 
+    </div>
+`
+});
+
+var app = new Vue({
+    el:'#shift_arrangement_table',
     methods: {
         addEmployeeInput: function (){
             let inputList = document.querySelector('#inputShiftTable tbody');
@@ -45,6 +121,9 @@ new Vue({
             } else {
                 console.log('你還有空格喔')
             }
+        },
+        makeFTresourceTable(){
+            mainFunction();
         }
     },
-})
+});

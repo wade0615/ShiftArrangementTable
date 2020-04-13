@@ -1,6 +1,6 @@
 // 主程式觸發條件：點擊輸出按鈕，逐一 callFunction 計算結果
-const makeFTresourceTable = document.querySelector('#makeFTresourceTable');
-makeFTresourceTable.addEventListener('click', mainFunction)
+// const makeFTresourceTable = document.querySelector('#makeFTresourceTable');
+// makeFTresourceTable.addEventListener('click', mainFunction)
 
 // 主程式：
 function mainFunction(){
