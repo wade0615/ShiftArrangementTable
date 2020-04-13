@@ -74,6 +74,47 @@ Vue.component('input-shifttable-list', {
 `
 });
 
+Vue.component('input-resource-forecast', {
+    template: `
+    <table class="table table-sm table-hover" id="resourceForecast">
+        <thead>
+            <tr>
+                <th scope="col">班別</th>
+                <th scope="col">一</th>
+                <th scope="col">二</th>
+                <th scope="col">三</th>
+                <th scope="col">四</th>
+                <th scope="col">五</th>
+                <th scope="col">六</th>
+                <th scope="col">日</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="employee">
+                <th>早班</th>
+                <td><input class="decorationLine" type="number" value="3" min="0" max="4" name="dayTimeResourceForecast"></td>
+                <td><input class="decorationLine" type="number" value="3" min="0" max="4" name="dayTimeResourceForecast"></td>
+                <td><input class="decorationLine" type="number" value="3" min="0" max="4" name="dayTimeResourceForecast"></td>
+                <td><input class="decorationLine" type="number" value="3" min="0" max="4" name="dayTimeResourceForecast"></td>
+                <td><input class="decorationLine" type="number" value="3" min="0" max="4" name="dayTimeResourceForecast"></td>
+                <td><input class="decorationLine" type="number" value="3" min="0" max="4" name="dayTimeResourceForecast"></td>
+                <td><input class="decorationLine" type="number" value="3" min="0" max="4" name="dayTimeResourceForecast"></td>
+            </tr>
+            <tr class="employee">
+                <th>晚班</th>
+                <td><input class="decorationLine" type="number" value="2" min="0" max="4" name="nightTimeResourceForecast"></td>
+                <td><input class="decorationLine" type="number" value="2" min="0" max="4" name="nightTimeResourceForecast"></td>
+                <td><input class="decorationLine" type="number" value="2" min="0" max="4" name="nightTimeResourceForecast"></td>
+                <td><input class="decorationLine" type="number" value="2" min="0" max="4" name="nightTimeResourceForecast"></td>
+                <td><input class="decorationLine" type="number" value="2" min="0" max="4" name="nightTimeResourceForecast"></td>
+                <td><input class="decorationLine" type="number" value="2" min="0" max="4" name="nightTimeResourceForecast"></td>
+                <td><input class="decorationLine" type="number" value="2" min="0" max="4" name="nightTimeResourceForecast"></td>
+            </tr>
+        </tbody>
+    </table>
+    `
+})
+
 var app = new Vue({
     el:'#shift_arrangement_table',
     methods: {
