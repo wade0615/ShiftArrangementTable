@@ -12,50 +12,50 @@
 <body>
     <div id="shift_arrangement_table">
 
-    <h1>Shift Arrangement Table 班表系統</h1>
+    <h1>{{ title }}</h1>
 
     <section class="table-responsive">
-    <h2>輸入預估人力表</h2>
-    <input-resource-forecast></input-resource-forecast>
+        <h2>{{ inputResourceForecast }}</h2>
+        <input-resource-forecast></input-resource-forecast>
     </section>
 
     <section>
-        <h2>輸入PT可上班日</h2>
+        <h2>{{ inputShifttableList }}</h2>
         <button v-on:click='addEmployeeInput()' type="button" class="btn btn-success" id="addEmployee">新增輸入欄</button>
         <input-shifttable-list></input-shifttable-list>
     </section>
     <button v-on:click='makeFTresourceTable()' type="button" class="btn btn-info" id="makeFTresourceTable">輸出PT需求人數與人員</button>
 
     <section>
-    <h2>各班別 PT 需求人數與 可選用職員</h2>
-    <div class="table-responsive">
-        <table class="table table-sm table-hover" id="resultShiftTable">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">一</th>
-                    <th scope="col">二</th>
-                    <th scope="col">三</th>
-                    <th scope="col">四</th>
-                    <th scope="col">五</th>
-                    <th scope="col">六</th>
-                    <th scope="col">日</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr id="dayShiftTable" class="senlist">
-                    <th>早班</th>
-                    <!-- <td>2個FT</td>
-                    <td>2個FT</td> -->
-                </tr>
-                <tr id="nightShiftTable" class="junlist">
-                    <th>晚班</th>
-                    <!-- <td>1個FT</td>
-                    <td>1個FT</td> -->
-                </tr>
-            </tbody>
-        </table>
-    </div>
+        <h2>{{ resultShiftTable }}</h2>
+        <div class="table-responsive">
+            <table class="table table-sm table-hover" id="resultShiftTable">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">一</th>
+                        <th scope="col">二</th>
+                        <th scope="col">三</th>
+                        <th scope="col">四</th>
+                        <th scope="col">五</th>
+                        <th scope="col">六</th>
+                        <th scope="col">日</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr id="dayShiftTable" class="senlist">
+                        <th>早班</th>
+                        <!-- <td>2個FT</td>
+                        <td>2個FT</td> -->
+                    </tr>
+                    <tr id="nightShiftTable" class="junlist">
+                        <th>晚班</th>
+                        <!-- <td>1個FT</td>
+                        <td>1個FT</td> -->
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </section>
     
     </div>

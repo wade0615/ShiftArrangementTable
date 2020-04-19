@@ -118,6 +118,12 @@ Vue.component('input-shifttable-list', {
 
 var app = new Vue({
     el:'#shift_arrangement_table',
+    data: {
+        title: 'Shift Arrangement Table 班表系統',
+        inputResourceForecast: '輸入預估人力表',
+        inputShifttableList: '輸入PT可上班日',
+        resultShiftTable: '各班別 PT 需求人數與 可選用職員'
+    },
     methods: {
         addEmployeeInput: function (){
             let inputList = document.querySelector('#inputShiftTable tbody');
