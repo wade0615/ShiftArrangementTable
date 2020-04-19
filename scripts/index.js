@@ -33,22 +33,22 @@ function mainFunction(employeeResourceForecast){
 };
 
 // 建立班表空陣列
-let employeeResourceForecast = [];
+// let employeeResourceForecast = [];
 
 // 建立預估人力陣列
-function makeResourceForecast(employeeResourceForecast){
-    let getDaytimeForecast = document.querySelectorAll('[name=dayTimeResourceForecast]');
-    let daytimeForecastData = Array.from(getDaytimeForecast).map(e => parseInt(e.value, 10));
-    let getNightTimeForecast = document.querySelectorAll('[name=nightTimeResourceForecast]');
-    let nightTimeForecastData = Array.from(getNightTimeForecast).map(e => parseInt(e.value, 10));
+// function makeResourceForecast(employeeResourceForecast){
+//     let getDaytimeForecast = document.querySelectorAll('[name=dayTimeResourceForecast]');
+//     let daytimeForecastData = Array.from(getDaytimeForecast).map(e => parseInt(e.value, 10));
+//     let getNightTimeForecast = document.querySelectorAll('[name=nightTimeResourceForecast]');
+//     let nightTimeForecastData = Array.from(getNightTimeForecast).map(e => parseInt(e.value, 10));
     
-    employeeResourceForecast = daytimeForecastData.map((daytimeForecastData,i) => {
-        return [daytimeForecastData,nightTimeForecastData[i]];
-    });
+//     employeeResourceForecast = daytimeForecastData.map((daytimeForecastData,i) => {
+//         return [daytimeForecastData,nightTimeForecastData[i]];
+//     });
     
-    console.log("employeeResourceForecast", employeeResourceForecast)
-    return employeeResourceForecast;
-};
+//     console.log("employeeResourceForecast", employeeResourceForecast)
+//     return employeeResourceForecast;
+// };
 
 // 宣告輸入欄位 DOM 元素
 let inputList = document.querySelector('#inputShiftTable tbody');
@@ -57,7 +57,7 @@ let lastInput = employee.length - 1;
 // let lastInputCode = employee[lastInput].querySelector('[name=PTCode]');
 
 // 點擊按鈕新增欄位
-const addEmployeebtn = document.querySelector('#addEmployee');
+// const addEmployeebtn = document.querySelector('#addEmployee');
 // addEmployeebtn.addEventListener('click', () => {
 //     addEmployeeInput();
 // });

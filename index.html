@@ -14,14 +14,11 @@
 
     <h1>{{ title }}</h1>
 
-    <section class="table-responsive">
-        <h2>{{ inputResourceForecast }}</h2>
+    <section>
         <input-resource-forecast></input-resource-forecast>
     </section>
 
-    <section>
-        <h2>{{ inputShifttableList }}</h2>
-        <button v-on:click='addEmployeeInput()' type="button" class="btn btn-success" id="addEmployee">新增輸入欄</button>
+    <section>        
         <input-shifttable-list></input-shifttable-list>
     </section>
     <button v-on:click='makeFTresourceTable()' type="button" class="btn btn-info" id="makeFTresourceTable">輸出PT需求人數與人員</button>
