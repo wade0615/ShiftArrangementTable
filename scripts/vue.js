@@ -5,7 +5,7 @@ Vue.component('input-resource-forecast', {
         }
     },
     template: 
-    `<div>
+    `<section>
         <h2>{{ inputResourceForecast }}</h2>
         <div class="table-responsive">
             <table class="table table-sm table-hover" id="resourceForecast">
@@ -45,7 +45,7 @@ Vue.component('input-resource-forecast', {
                 </tbody>
             </table>
         </div>
-    </div>`
+    </section>`
 })
 
 
@@ -57,7 +57,7 @@ Vue.component('input-shifttable-list', {
         }
     },
     template: 
-    `<div>
+    `<section>
         <h2>{{ inputShifttableList }}</h2>
         <button v-on:click='addEmployeeInput()' type="button" class="btn btn-success" id="addEmployee">新增輸入欄</button>
         <div class="table-responsive">
@@ -132,7 +132,7 @@ Vue.component('input-shifttable-list', {
             </table> 
         </div>
         <button v-on:click='makeFTresourceTable()' type="button" class="btn btn-info" id="makeFTresourceTable">輸出PT需求人數與人員</button>
-    </div>`,
+    </section>`,
     methods: {
         addEmployeeInput() {
             let inputList = document.querySelector('#inputShiftTable tbody');
