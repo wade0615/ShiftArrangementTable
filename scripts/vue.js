@@ -122,7 +122,8 @@ var app = new Vue({
         title: 'Shift Arrangement Table 班表系統',
         inputResourceForecast: '輸入預估人力表',
         inputShifttableList: '輸入PT可上班日',
-        resultShiftTable: '各班別 PT 需求人數與 可選用職員'
+        resultShiftTable: '各班別 PT 需求人數與 可選用職員',
+        employeeResourceForecast: [],
     },
     methods: {
         addEmployeeInput: function (){
@@ -171,8 +172,23 @@ var app = new Vue({
             }
         },
         makeFTresourceTable(){
-            mainFunction();
-        }
+            this.makeResourceForecast(this.employeeResourceForecast);
+            mainFunction(this.employeeResourceForecast);
+        },
+        makeResourceForecast(employeeResourceForecast){
+            let getDaytimeForecast = document.querySelectorAll('[name=dayTimeResourceForecast]');
+            let daytimeForecastData = Array.from(getDaytimeForecast).map(e => parseInt(e.value, 10));
+            let getNightTimeForecast = document.querySelectorAll('[name=nightTimeResourceForecast]');
+            let nightTimeForecastData = Array.from(getNightTimeForecast).map(e => parseInt(e.value, 10));
+            
+            employeeResourceForecast = daytimeForecastData.map((daytimeForecastData,i) => {
+                return [daytimeForecastData,nightTimeForecastData[i]];
+            });
+            
+            console.log("employeeResourceForecast", employeeResourceForecast)
+            // return employeeResourceForecast;
+            this.employeeResourceForecast = employeeResourceForecast
+        },
     },
 });
 Vue.config.devtools = true;

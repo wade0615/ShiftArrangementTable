@@ -3,9 +3,10 @@
 // makeFTresourceTable.addEventListener('click', mainFunction)
 
 // 主程式：
-function mainFunction(){
+function mainFunction(employeeResourceForecast){
+    console.log('I am in')
     // 建立預估人力陣列
-    employeeResourceForecast = makeResourceForecast(employeeResourceForecast);
+    // employeeResourceForecast = makeResourceForecast(employeeResourceForecast);
     // 建立 PT 的資料
     PT_Data = buildPT_Data(PT_Data);
     
