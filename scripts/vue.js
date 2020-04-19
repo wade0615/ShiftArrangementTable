@@ -52,7 +52,8 @@ Vue.component('input-resource-forecast', {
 Vue.component('input-shifttable-list', {
     data() {
         return {
-            inputShifttableList: '輸入PT可上班日'
+            inputShifttableList: '輸入PT可上班日',
+            employeeResourceForecast: [],
         }
     },
     template: 
@@ -130,6 +131,7 @@ Vue.component('input-shifttable-list', {
                 </tbody>
             </table> 
         </div>
+        <button v-on:click='makeFTresourceTable()' type="button" class="btn btn-info" id="makeFTresourceTable">輸出PT需求人數與人員</button>
     </div>`,
     methods: {
         addEmployeeInput() {
@@ -176,18 +178,7 @@ Vue.component('input-shifttable-list', {
             } else {
                 console.log('你還有空格喔')
             }
-        }
-    },
-});
-
-var app = new Vue({
-    el:'#shift_arrangement_table',
-    data: {
-        title: 'Shift Arrangement Table 班表系統',
-        resultShiftTable: '各班別 PT 需求人數與 可選用職員',
-        employeeResourceForecast: [],
-    },
-    methods: {
+        },
         makeFTresourceTable(){
             this.makeResourceForecast(this.employeeResourceForecast);
             mainFunction(this.employeeResourceForecast);
@@ -203,9 +194,19 @@ var app = new Vue({
             });
             
             console.log("employeeResourceForecast", employeeResourceForecast)
-            // return employeeResourceForecast;
             this.employeeResourceForecast = employeeResourceForecast
         },
+    },
+});
+
+var app = new Vue({
+    el:'#shift_arrangement_table',
+    data: {
+        title: 'Shift Arrangement Table 班表系統',
+        resultShiftTable: '各班別 PT 需求人數與 可選用職員',
+    },
+    methods: {
+        
     },
 });
 Vue.config.devtools = true;
