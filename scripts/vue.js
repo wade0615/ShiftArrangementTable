@@ -199,11 +199,50 @@ Vue.component('input-shifttable-list', {
     },
 });
 
+Vue.component('result-shift-table', {
+    data() {
+        return {
+            resultShiftTable: '各班別 PT 需求人數與 可選用職員'
+        }
+    },
+    template:
+    `<section>
+        <h2>{{ resultShiftTable }}</h2>
+        <div class="table-responsive">
+            <table class="table table-sm table-hover" id="resultShiftTable">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">一</th>
+                        <th scope="col">二</th>
+                        <th scope="col">三</th>
+                        <th scope="col">四</th>
+                        <th scope="col">五</th>
+                        <th scope="col">六</th>
+                        <th scope="col">日</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr id="dayShiftTable" class="senlist">
+                        <th>早班</th>
+                        <!-- <td>2個FT</td>
+                        <td>2個FT</td> -->
+                    </tr>
+                    <tr id="nightShiftTable" class="junlist">
+                        <th>晚班</th>
+                        <!-- <td>1個FT</td>
+                        <td>1個FT</td> -->
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>`
+})
+
 var app = new Vue({
     el:'#shift_arrangement_table',
     data: {
-        title: 'Shift Arrangement Table 班表系統',
-        resultShiftTable: '各班別 PT 需求人數與 可選用職員',
+        title: 'Shift Arrangement Table 班表系統'
     },
     methods: {
         
