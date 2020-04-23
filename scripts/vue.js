@@ -66,8 +66,8 @@ Vue.component('input-shifttable-list', {
     },
     template: 
     `<section>
-        <div v-for='(PT_data, index) in PT_datas'>{{ PT_data.code }}
-        </div>
+        <div v-for='(PT_data, index) in PT_datas'>{{ PT_data.code }}</div>
+        
         <h2>{{ inputShifttableList }}</h2>
         <button v-on:click='addEmployeeInput()' type="button" class="btn btn-success" id="addEmployee">新增輸入欄</button>
         <div class="table-responsive">
@@ -88,8 +88,8 @@ Vue.component('input-shifttable-list', {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="employee">
-                        <th><input type="text" name="PTCode" value="Q" class="decorationLine employeeCode"></th>
+                    <tr class="employee" v-for='(PT_data, index) in PT_datas'>
+                        <th><input type="text" name="PTCode" :value='PT_data.code' class="decorationLine employeeCode"></th>
                         <td>
                             <select class="jobType form-control" name="jobType">
                                 <option value="">職稱</option>
@@ -113,31 +113,7 @@ Vue.component('input-shifttable-list', {
                         <td><input type="checkbox" name="daySchedule"><br><input type="checkbox" name="nightSchedule"></td>
                         <td><button v-on:click='delEmployee()' type="button" class="btn btn-danger">Del</button></td>
                     </tr>
-                    <tr class="employee">
-                        <th><input type="text" name="PTCode" value="R" class="decorationLine employeeCode"></th>
-                        <td>
-                            <select class="jobType form-control" name="jobType">
-                                <option value="">職稱</option>
-                                <option value="FT">正職</option>
-                                <option value="PT" selected>PT</option>                    
-                            </select>
-                        </td>
-                        <td>
-                            <select class="rank form-control" name="rank">
-                                <option value="">能力階級</option>
-                                <option value="jun" selected>Junior</option>
-                                <option value="sen">Senior</option>
-                            </select>
-                        </td>
-                        <td><input type="checkbox" name="daySchedule"><br><input type="checkbox" name="nightSchedule"></td>
-                        <td><input type="checkbox" name="daySchedule"><br><input type="checkbox" name="nightSchedule"></td>
-                        <td><input type="checkbox" name="daySchedule"><br><input type="checkbox" name="nightSchedule"></td>
-                        <td><input type="checkbox" name="daySchedule"><br><input type="checkbox" name="nightSchedule"></td>
-                        <td><input type="checkbox" name="daySchedule"><br><input type="checkbox" name="nightSchedule"></td>
-                        <td><input type="checkbox" name="daySchedule"><br><input type="checkbox" name="nightSchedule"></td>
-                        <td><input type="checkbox" name="daySchedule"><br><input type="checkbox" name="nightSchedule"></td>
-                        <td><button v-on:click='delEmployee()' type="button" class="btn btn-danger">Del</button></td>
-                    </tr>
+                    
                 </tbody>
             </table> 
         </div>
