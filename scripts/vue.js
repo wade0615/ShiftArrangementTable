@@ -54,10 +54,20 @@ Vue.component('input-shifttable-list', {
         return {
             inputShifttableList: '輸入PT可上班日',
             employeeResourceForecast: [],
+            PT_datas: [
+                {
+                    code: "Q"
+                },
+                {
+                    code: "R"
+                }
+            ]
         }
     },
     template: 
     `<section>
+        <div v-for='(PT_data, index) in PT_datas'>{{ PT_data.code }}
+        </div>
         <h2>{{ inputShifttableList }}</h2>
         <button v-on:click='addEmployeeInput()' type="button" class="btn btn-success" id="addEmployee">新增輸入欄</button>
         <div class="table-responsive">
@@ -101,7 +111,7 @@ Vue.component('input-shifttable-list', {
                         <td><input type="checkbox" name="daySchedule"><br><input type="checkbox" name="nightSchedule"></td>
                         <td><input type="checkbox" name="daySchedule"><br><input type="checkbox" name="nightSchedule"></td>
                         <td><input type="checkbox" name="daySchedule"><br><input type="checkbox" name="nightSchedule"></td>
-                        <td><button type="button" class="btn btn-danger delEmployee">Del</button></td>
+                        <td><button v-on:click='delEmployee()' type="button" class="btn btn-danger">Del</button></td>
                     </tr>
                     <tr class="employee">
                         <th><input type="text" name="PTCode" value="R" class="decorationLine employeeCode"></th>
@@ -126,7 +136,7 @@ Vue.component('input-shifttable-list', {
                         <td><input type="checkbox" name="daySchedule"><br><input type="checkbox" name="nightSchedule"></td>
                         <td><input type="checkbox" name="daySchedule"><br><input type="checkbox" name="nightSchedule"></td>
                         <td><input type="checkbox" name="daySchedule"><br><input type="checkbox" name="nightSchedule"></td>
-                        <td><button type="button" class="btn btn-danger delEmployee">Del</button></td>
+                        <td><button v-on:click='delEmployee()' type="button" class="btn btn-danger">Del</button></td>
                     </tr>
                 </tbody>
             </table> 
@@ -170,11 +180,11 @@ Vue.component('input-shifttable-list', {
                 <td><input type="checkbox" name="daySchedule"><br><input type="checkbox" name="nightSchedule"></td>
                 <td><input type="checkbox" name="daySchedule"><br><input type="checkbox" name="nightSchedule"></td>
                 <td><input type="checkbox" name="daySchedule"><br><input type="checkbox" name="nightSchedule"></td>
-                <td><button type="button" class="btn btn-danger delEmployee">Del</button></td>
+                <td><button v-on:click='delEmployee()' type="button" class="btn btn-danger">Del</button></td>
                 `
                 employee = document.querySelectorAll('#inputShiftTable tbody tr');
                 lastInput = employee.length - 1;
-                delEmployee();
+                // delEmployee();
             } else {
                 console.log('你還有空格喔')
             }
@@ -195,6 +205,10 @@ Vue.component('input-shifttable-list', {
             
             console.log("employeeResourceForecast", employeeResourceForecast)
             this.employeeResourceForecast = employeeResourceForecast
+        },
+        delEmployee() {
+            console.log('Vue');
+            // this.closest("tr").remove();
         },
     },
 });
@@ -225,13 +239,9 @@ Vue.component('result-shift-table', {
                 <tbody>
                     <tr id="dayShiftTable" class="senlist">
                         <th>早班</th>
-                        <!-- <td>2個FT</td>
-                        <td>2個FT</td> -->
                     </tr>
                     <tr id="nightShiftTable" class="junlist">
                         <th>晚班</th>
-                        <!-- <td>1個FT</td>
-                        <td>1個FT</td> -->
                     </tr>
                 </tbody>
             </table>

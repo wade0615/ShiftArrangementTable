@@ -118,14 +118,14 @@ let lastInput = employee.length - 1;
 // }
 
 // 點擊刪除按鈕刪除單一員工資料
-function delEmployee(){
-    const delEmployeebtn = document.querySelectorAll('.delEmployee');
-    delEmployeebtn.forEach(e => {
-        e.addEventListener('click', function(){
-        this.closest("tr").remove();
-        })
-    });
-};
+// function delEmployee(){
+
+//     delEmployeebtn.forEach(e => {
+//         e.addEventListener('click', function(){
+//         this.closest("tr").remove();
+//         })
+//     });
+// };
 
 // 建立PT資料
 let PT_Data = [];
