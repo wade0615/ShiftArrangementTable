@@ -66,8 +66,6 @@ Vue.component('input-shifttable-list', {
     },
     template: 
     `<section>
-        <div v-for='(PT_data, index) in PT_datas'>{{ PT_data.code }}</div>
-        
         <h2>{{ inputShifttableList }}</h2>
         <button v-on:click='addEmployeeInput()' type="button" class="btn btn-success" id="addEmployee">新增輸入欄</button>
         <div class="table-responsive">
@@ -101,7 +99,7 @@ Vue.component('input-shifttable-list', {
                             <select class="rank form-control" name="rank">
                                 <option value="">能力階級</option>
                                 <option value="jun">Junior</option>
-                                <option value="sen" selected>Senior</option>                    
+                                <option value="sen">Senior</option>                    
                             </select>
                         </td>
                         <td><input type="checkbox" name="daySchedule"><br><input type="checkbox" name="nightSchedule"></td>
