@@ -136,7 +136,11 @@ Vue.component('input-shifttable-list', {
             let isEmployeeRankEmpty = employee[lastInput].cells[2].children[0].value != '' ? true : false ;
             if( isEmployeeCodeEmpty || isEmployeeJobTypeEmpty || isEmployeeRankEmpty ){
                 console.log('要加新的一列');
-                this.PT_datas.push({code:''});
+                this.PT_datas.push({
+                    code:'',
+                    jobType: 'PT',
+                    rank: ''
+                });
             } else {
                 console.log('你還有空格喔');
                 alert('你的最後一欄是空的喔！');
