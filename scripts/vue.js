@@ -56,10 +56,19 @@ Vue.component('input-shifttable-list', {
             employeeResourceForecast: [],
             PT_datas: [
                 {
-                    code: "Q"
+                    code: "Q",
+                    jobType: 'PT',
+                    rank: 'junior'
                 },
                 {
-                    code: "R"
+                    code: "R",
+                    jobType: 'FT',
+                    rank: 'senior'
+                },
+                {
+                    code: "T",
+                    jobType: 'PT',
+                    rank: 'junior'
                 }
             ]
         }
@@ -90,16 +99,16 @@ Vue.component('input-shifttable-list', {
                         <th><input type="text" name="PTCode" :value='PT_data.code' class="decorationLine employeeCode"></th>
                         <td>
                             <select class="jobType form-control" name="jobType">
-                                <option value="">職稱</option>
-                                <option value="FT">正職</option>
-                                <option value="PT" selected>PT</option>                    
+                                <option value="" v-bind:selected="true">職稱</option>
+                                <option value="FT" v-bind:selected="jobTypeFT(PT_data.jobType)">正職</option>
+                                <option value="PT" v-bind:selected="jobTypePT(PT_data.jobType)">PT</option>
                             </select>
                         </td>
                         <td>
                             <select class="rank form-control" name="rank">
-                                <option value="">能力階級</option>
-                                <option value="jun">Junior</option>
-                                <option value="sen">Senior</option>                    
+                                <option value="" v-bind:selected="true">能力階級</option>
+                                <option value="jun" v-bind:selected="rankJun(PT_data.rank)">Junior</option>
+                                <option value="sen" v-bind:selected="rankSen(PT_data.rank)">Senior</option>                    
                             </select>
                         </td>
                         <td><input type="checkbox" name="daySchedule"><br><input type="checkbox" name="nightSchedule"></td>
@@ -154,6 +163,18 @@ Vue.component('input-shifttable-list', {
             console.log('Del Vue',e);
             this.PT_datas.splice(e, 1);
         },
+        jobTypeFT(e) {
+            return (e === 'FT' ? true : false);
+        },
+        jobTypePT(e) {
+            return (e === 'PT' ? true : false);
+        },
+        rankJun(e){
+            return (e === 'junior' ? true : false);
+        },
+        rankSen(e){
+            return (e === 'senior' ? true : false);
+        }
     },
 });
 
