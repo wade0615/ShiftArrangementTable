@@ -134,6 +134,7 @@ Vue.component('input-shifttable-list', {
     </section>`,
     methods: {
         addEmployeeInput() {
+            this.saveData();
             let employee = document.querySelectorAll('#inputShiftTable tbody tr');
             let lastInput = employee.length - 1;
             
@@ -172,10 +173,8 @@ Vue.component('input-shifttable-list', {
             this.employeeResourceForecast = employeeResourceForecast
         },
         delEmployee: function(e) {
-            console.log('Del Vue',e);
             this.saveData();
-            console.log(this.PT_datas);
-            // this.PT_datas.splice(e, 1);
+            this.PT_datas.splice(e, 1);
         },
         jobTypeFT(e) {
             return (e === 'FT' ? true : false);
@@ -197,13 +196,22 @@ Vue.component('input-shifttable-list', {
             let PTCode = document.querySelectorAll("[name=PTCode]");
             let jobType = document.querySelectorAll("[name=jobType]");
             let rank = document.querySelectorAll("[name=rank]");
+            let daySchedules = document.querySelectorAll("[name=daySchedule]");
+            let dayScheduleInNum = Array.from(daySchedules).map(e => (e.checked === true ? 1 : 0));
+            let daySchedule = [];
+            let nightSchedules = document.querySelectorAll("[name=nightSchedule]");
+            let nightScheduleInNum = Array.from(nightSchedules).map(e => (e.checked === true ? 1 : 0));
+            let nightSchedule = [];
+
             this.PT_datas = this.PT_datas.map((e, index) => {
+                daySchedule[index] = dayScheduleInNum.slice(7 * index, 7 * (index + 1)).join('');
+                nightSchedule[index] = nightScheduleInNum.slice(7 * index, 7 * (index + 1)).join('');
                 return {
                     code: PTCode[index].value,
                     jobType: jobType[index].value,
                     rank: rank[index].value,
-                    daySchedule: '1111111',
-                    nightSchedule: '0000000'
+                    daySchedule: daySchedule[index],
+                    nightSchedule: nightSchedule[index]
                 }
             });
         }
