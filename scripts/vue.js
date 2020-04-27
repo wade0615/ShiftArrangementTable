@@ -145,7 +145,9 @@ Vue.component('input-shifttable-list', {
                 this.PT_datas.push({
                     code:'',
                     jobType: 'PT',
-                    rank: ''
+                    rank: '',
+                    daySchedule: '',
+                    nightSchedule: ''
                 });
             } else {
                 console.log('你還有空格喔');
