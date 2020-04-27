@@ -113,8 +113,8 @@ Vue.component('input-shifttable-list', {
                         <td>
                             <select class="rank form-control" name="rank">
                                 <option value="" v-bind:selected="true">能力階級</option>
-                                <option value="jun" v-bind:selected="rankJun(PT_data.rank)">Junior</option>
-                                <option value="sen" v-bind:selected="rankSen(PT_data.rank)">Senior</option>                    
+                                <option value="junior" v-bind:selected="rankJun(PT_data.rank)">Junior</option>
+                                <option value="senior" v-bind:selected="rankSen(PT_data.rank)">Senior</option>                    
                             </select>
                         </td>
                         <td><input type="checkbox" name="daySchedule" v-bind:checked="schedule(PT_data.daySchedule, 0)"><br><input type="checkbox" name="nightSchedule" v-bind:checked="schedule(PT_data.nightSchedule, 0)"></td>
@@ -173,7 +173,9 @@ Vue.component('input-shifttable-list', {
         },
         delEmployee: function(e) {
             console.log('Del Vue',e);
-            this.PT_datas.splice(e, 1);
+            this.saveData();
+            console.log(this.PT_datas);
+            // this.PT_datas.splice(e, 1);
         },
         jobTypeFT(e) {
             return (e === 'FT' ? true : false);
@@ -190,6 +192,20 @@ Vue.component('input-shifttable-list', {
         schedule(schedule, day){
             let scheduleInArray = schedule.split("");
             return (parseInt(scheduleInArray[day]) === 1 ? true : false);
+        },
+        saveData(){
+            let PTCode = document.querySelectorAll("[name=PTCode]");
+            let jobType = document.querySelectorAll("[name=jobType]");
+            let rank = document.querySelectorAll("[name=rank]");
+            this.PT_datas = this.PT_datas.map((e, index) => {
+                return {
+                    code: PTCode[index].value,
+                    jobType: jobType[index].value,
+                    rank: rank[index].value,
+                    daySchedule: '1111111',
+                    nightSchedule: '0000000'
+                }
+            });
         }
     },
 });
