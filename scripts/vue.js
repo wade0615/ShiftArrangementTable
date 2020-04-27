@@ -58,17 +58,23 @@ Vue.component('input-shifttable-list', {
                 {
                     code: "Q",
                     jobType: 'PT',
-                    rank: 'junior'
+                    rank: 'junior',
+                    daySchedule: '1111111',
+                    nightSchedule: '0000000',
                 },
                 {
                     code: "R",
                     jobType: 'FT',
-                    rank: 'senior'
+                    rank: 'senior',
+                    daySchedule: '0000000',
+                    nightSchedule: '1111111',
                 },
                 {
                     code: "T",
                     jobType: 'PT',
-                    rank: 'junior'
+                    rank: 'junior',
+                    daySchedule: '1110011',
+                    nightSchedule: '0001111',
                 }
             ]
         }
@@ -111,13 +117,13 @@ Vue.component('input-shifttable-list', {
                                 <option value="sen" v-bind:selected="rankSen(PT_data.rank)">Senior</option>                    
                             </select>
                         </td>
-                        <td><input type="checkbox" name="daySchedule"><br><input type="checkbox" name="nightSchedule"></td>
-                        <td><input type="checkbox" name="daySchedule"><br><input type="checkbox" name="nightSchedule"></td>
-                        <td><input type="checkbox" name="daySchedule"><br><input type="checkbox" name="nightSchedule"></td>
-                        <td><input type="checkbox" name="daySchedule"><br><input type="checkbox" name="nightSchedule"></td>
-                        <td><input type="checkbox" name="daySchedule"><br><input type="checkbox" name="nightSchedule"></td>
-                        <td><input type="checkbox" name="daySchedule"><br><input type="checkbox" name="nightSchedule"></td>
-                        <td><input type="checkbox" name="daySchedule"><br><input type="checkbox" name="nightSchedule"></td>
+                        <td><input type="checkbox" name="daySchedule" v-bind:checked="schedule(PT_data.daySchedule, 0)"><br><input type="checkbox" name="nightSchedule" v-bind:checked="schedule(PT_data.nightSchedule, 0)"></td>
+                        <td><input type="checkbox" name="daySchedule" v-bind:checked="schedule(PT_data.daySchedule, 1)"><br><input type="checkbox" name="nightSchedule" v-bind:checked="schedule(PT_data.nightSchedule, 1)"></td>
+                        <td><input type="checkbox" name="daySchedule" v-bind:checked="schedule(PT_data.daySchedule, 2)"><br><input type="checkbox" name="nightSchedule" v-bind:checked="schedule(PT_data.nightSchedule, 2)"></td>
+                        <td><input type="checkbox" name="daySchedule" v-bind:checked="schedule(PT_data.daySchedule, 3)"><br><input type="checkbox" name="nightSchedule" v-bind:checked="schedule(PT_data.nightSchedule, 3)"></td>
+                        <td><input type="checkbox" name="daySchedule" v-bind:checked="schedule(PT_data.daySchedule, 4)"><br><input type="checkbox" name="nightSchedule" v-bind:checked="schedule(PT_data.nightSchedule, 4)"></td>
+                        <td><input type="checkbox" name="daySchedule" v-bind:checked="schedule(PT_data.daySchedule, 5)"><br><input type="checkbox" name="nightSchedule" v-bind:checked="schedule(PT_data.nightSchedule, 5)"></td>
+                        <td><input type="checkbox" name="daySchedule" v-bind:checked="schedule(PT_data.daySchedule, 6)"><br><input type="checkbox" name="nightSchedule" v-bind:checked="schedule(PT_data.nightSchedule, 6)"></td>
                         <td><button v-on:click='delEmployee(index)' type="button" class="btn btn-danger" >Del</button></td>
                     </tr>
                     
@@ -178,6 +184,10 @@ Vue.component('input-shifttable-list', {
         },
         rankSen(e){
             return (e === 'senior' ? true : false);
+        },
+        schedule(schedule, day){
+            let scheduleInArray = schedule.split("");
+            return (parseInt(scheduleInArray[day]) === 1 ? true : false);
         }
     },
 });
