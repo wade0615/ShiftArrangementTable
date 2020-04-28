@@ -56,6 +56,7 @@ Vue.component('input-shifttable-list', {
             employeeResourceForecast: [],
             PT_datas: [
                 {
+                    id: 0,
                     code: "Q",
                     jobType: 'PT',
                     rank: 'junior',
@@ -63,6 +64,7 @@ Vue.component('input-shifttable-list', {
                     nightSchedule: '0000000',
                 },
                 {
+                    id: 1,
                     code: "R",
                     jobType: 'FT',
                     rank: 'senior',
@@ -70,6 +72,7 @@ Vue.component('input-shifttable-list', {
                     nightSchedule: '1111111',
                 },
                 {
+                    id: 2,
                     code: "T",
                     jobType: 'PT',
                     rank: 'junior',
@@ -101,7 +104,7 @@ Vue.component('input-shifttable-list', {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="employee" v-for='(PT_data, index) in PT_datas'>
+                    <tr class="employee" v-for='(PT_data, index) in PT_datas' :key="PT_data.id">
                         <th><input type="text" name="PTCode" :value='PT_data.code' class="decorationLine employeeCode"></th>
                         <td>
                             <select class="jobType form-control" name="jobType">
@@ -144,6 +147,7 @@ Vue.component('input-shifttable-list', {
             if( isEmployeeCodeEmpty || isEmployeeJobTypeEmpty || isEmployeeRankEmpty ){
                 console.log('要加新的一列');
                 this.PT_datas.push({
+                    id: 0,
                     code:'',
                     jobType: 'PT',
                     rank: '',
@@ -205,8 +209,9 @@ Vue.component('input-shifttable-list', {
 
             this.PT_datas = this.PT_datas.map((e, index) => {
                 daySchedule[index] = dayScheduleInNum.slice(7 * index, 7 * (index + 1)).join('');
-                nightSchedule[index] = nightScheduleInNum.slice(7 * index, 7 * (index + 1)).join('');
+                nightSchedule[index] = nightScheduleInNum.slice(7 * index, 7 * (index + 1)).join('');                
                 return {
+                    id: index,
                     code: PTCode[index].value,
                     jobType: jobType[index].value,
                     rank: rank[index].value,
