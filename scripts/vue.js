@@ -127,7 +127,7 @@ Vue.component('input-shifttable-list', {
                         <td><input type="checkbox" name="daySchedule" v-bind:checked="schedule(PT_data.daySchedule, 4)"><br><input type="checkbox" name="nightSchedule" v-bind:checked="schedule(PT_data.nightSchedule, 4)"></td>
                         <td><input type="checkbox" name="daySchedule" v-bind:checked="schedule(PT_data.daySchedule, 5)"><br><input type="checkbox" name="nightSchedule" v-bind:checked="schedule(PT_data.nightSchedule, 5)"></td>
                         <td><input type="checkbox" name="daySchedule" v-bind:checked="schedule(PT_data.daySchedule, 6)"><br><input type="checkbox" name="nightSchedule" v-bind:checked="schedule(PT_data.nightSchedule, 6)"></td>
-                        <td><button v-on:click='delEmployee(index)' type="button" class="btn btn-danger" >Del</button></td>
+                        <td><button id="delBtn" v-on:click='delEmployee(index)' type="button" class="btn btn-danger">Del</button></td>
                     </tr>
                     
                 </tbody>

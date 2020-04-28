@@ -28,8 +28,8 @@ section {
   border-bottom: solid 1px black;
 }
 
-.employee td:last-child {
-  padding-left: 1.5rem;
+.employee #delBtn {
+  margin-left: 1.5rem;
 }
 
 .employeeCode {
@@ -38,7 +38,7 @@ section {
 }
 
 .jobType {
-  width: 3rem;
+  width: 3.3rem;
   padding: 0;
 }
 
