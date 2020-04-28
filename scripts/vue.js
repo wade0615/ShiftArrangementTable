@@ -147,8 +147,8 @@ Vue.component('input-shifttable-list', {
                     code:'',
                     jobType: 'PT',
                     rank: '',
-                    daySchedule: '',
-                    nightSchedule: ''
+                    daySchedule: '0000000',
+                    nightSchedule: '0000000'
                 });
             } else {
                 console.log('你還有空格喔');
