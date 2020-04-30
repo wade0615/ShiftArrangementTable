@@ -3,7 +3,7 @@
 // makeFTresourceTable.addEventListener('click', mainFunction)
 
 // 主程式：
-function mainFunction(employeeResourceForecast,PT_Data){
+function mainFunction(employeeResourceForecast,PT_Data_InName){
     console.log('I am in')
     // 建立預估人力陣列
     // employeeResourceForecast = makeResourceForecast(employeeResourceForecast);
@@ -11,7 +11,7 @@ function mainFunction(employeeResourceForecast,PT_Data){
     // PT_Data = buildPT_Data(PT_Data);
     
     //建立一個新data，將布林值轉換成各員工代號
-    let PT_Data_InName = PT_Data_ToName(PT_Data);
+    // let PT_Data_InName = PT_Data_ToName(PT_Data);
     // PT人力需求預測
     const PT_ResourceForecast = employeeResourceForecast.map(dayForecast => dayForecast.map(e => e - 1));
     console.log("PT_ResourceForecast", PT_ResourceForecast);
@@ -131,38 +131,38 @@ let lastInput = employee.length - 1;
 // let PT_Data = [];
 
 // 依照 DOM 表單輸入的值，建立 PT 的資料
-function buildPT_Data(PT_Data){
-    employee = document.querySelectorAll('#inputShiftTable tbody tr');
+// function buildPT_Data(PT_Data){
+//     employee = document.querySelectorAll('#inputShiftTable tbody tr');
 
-    return PT_Data = Array.from(employee).map(e => {
-        let daySchedule = e.querySelectorAll('[name=daySchedule]');
-        let nightSchedule = e.querySelectorAll('[name=nightSchedule]');
-        dayScheduleData = Array.from(daySchedule).map(e => e.checked === true ? 1 : 0);
-        nightScheduleData = Array.from(nightSchedule).map(e => e.checked === true ? 1 : 0);
-        let schedule = dayScheduleData.map((dayScheduleData,i) => [dayScheduleData,nightScheduleData[i]]);
-        return {
-            code: e.querySelector('[name=PTCode]').value,
-            jobType: e.querySelector('[name=jobType]').value,
-            rank: e.querySelector('[name=rank]').value,
-            schedule: schedule,
-        }
-    });
-};
+//     return PT_Data = Array.from(employee).map(e => {
+//         let daySchedule = e.querySelectorAll('[name=daySchedule]');
+//         let nightSchedule = e.querySelectorAll('[name=nightSchedule]');
+//         dayScheduleData = Array.from(daySchedule).map(e => e.checked === true ? 1 : 0);
+//         nightScheduleData = Array.from(nightSchedule).map(e => e.checked === true ? 1 : 0);
+//         let schedule = dayScheduleData.map((dayScheduleData,i) => [dayScheduleData,nightScheduleData[i]]);
+//         return {
+//             code: e.querySelector('[name=PTCode]').value,
+//             jobType: e.querySelector('[name=jobType]').value,
+//             rank: e.querySelector('[name=rank]').value,
+//             schedule: schedule,
+//         }
+//     });
+// };
 
 // 將 PT_Data 上班日的布林值轉換成各員工代號
-function PT_Data_ToName(PT_Data){
-    return PT_Data.map(data => {
-        schedule_InName = data.schedule.map(e => {
-            return e = e.map(onDuty => onDuty === 1 ? data.code : '')
-        });
-        return data = {
-            code: data.code,
-            schedule: schedule_InName,
-            jobType: data.jobType,
-            rank: data.rank
-        }
-    })
-};
+// function PT_Data_ToName(PT_Data){
+//     return PT_Data.map(data => {
+//         schedule_InName = data.schedule.map(e => {
+//             return e = e.map(onDuty => onDuty === 1 ? data.code : '')
+//         });
+//         return data = {
+//             code: data.code,
+//             schedule: schedule_InName,
+//             jobType: data.jobType,
+//             rank: data.rank
+//         }
+//     })
+// };
 
 // 列出 PT 需求人數與可上班人員
 function list_PT_onDutyTable(PT_ResourceForecast,PT_Data_InName) {

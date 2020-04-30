@@ -209,7 +209,8 @@ Vue.component('result-shift-table', {
         return {
             resultShiftTable: '各班別 PT 需求人數與 可選用職員',
             employeeResourceForecast: [],
-            PT_datas: [],
+            ptDatas: [],
+            ptDataInName: [],
         }
     },
     template:
@@ -244,8 +245,9 @@ Vue.component('result-shift-table', {
     methods: {
         makeFTresourceTable(){
             this.makeResourceForecast();
-            this.buildPT_Data();
-            mainFunction(this.employeeResourceForecast,this.PT_datas);
+            this.buildPTData();
+            this.ptDataInName = this.PTDataToName(this.ptDatas);
+            mainFunction(this.employeeResourceForecast,this.ptDataInName);
         },
         makeResourceForecast(){
             let getDaytimeForecast = document.querySelectorAll('[name=dayTimeResourceForecast]');
@@ -257,10 +259,10 @@ Vue.component('result-shift-table', {
                 return [daytimeForecastData,nightTimeForecastData[i]];
             });
         },
-        buildPT_Data(){
+        buildPTData(){
             employee = document.querySelectorAll('#inputShiftTable tbody tr');
         
-            this.PT_datas = Array.from(employee).map(e => {
+            this.ptDatas = Array.from(employee).map(e => {
                 let daySchedule = e.querySelectorAll('[name=daySchedule]');
                 let nightSchedule = e.querySelectorAll('[name=nightSchedule]');
                 dayScheduleData = Array.from(daySchedule).map(e => e.checked === true ? 1 : 0);
@@ -273,6 +275,20 @@ Vue.component('result-shift-table', {
                     schedule: schedule,
                 }
             });
+            console.log('inside',this.ptDatas)
+        },
+        PTDataToName(e){
+            return e.map(data => {
+                schedule_InName = data.schedule.map(e => {
+                    return e = e.map(onDuty => onDuty === 1 ? data.code : '')
+                });
+                return data = {
+                    code: data.code,
+                    schedule: schedule_InName,
+                    jobType: data.jobType,
+                    rank: data.rank
+                }
+            })
         },
     }
 })
