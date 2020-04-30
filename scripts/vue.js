@@ -53,7 +53,6 @@ Vue.component('input-shifttable-list', {
     data() {
         return {
             inputShifttableList: '輸入PT可上班日',
-            employeeResourceForecast: [],
             PT_datas: [
                 {
                     id: 0,
@@ -133,7 +132,6 @@ Vue.component('input-shifttable-list', {
                 </tbody>
             </table> 
         </div>
-        <button v-on:click='makeFTresourceTable()' type="button" class="btn btn-info" id="makeFTresourceTable">輸出PT需求人數與人員</button>
     </section>`,
     methods: {
         addEmployeeInput() {
@@ -158,23 +156,6 @@ Vue.component('input-shifttable-list', {
                 console.log('你還有空格喔');
                 alert('你的最後一欄是空的喔！');
             }
-        },
-        makeFTresourceTable(){
-            this.makeResourceForecast(this.employeeResourceForecast);
-            mainFunction(this.employeeResourceForecast);
-        },
-        makeResourceForecast(employeeResourceForecast){
-            let getDaytimeForecast = document.querySelectorAll('[name=dayTimeResourceForecast]');
-            let daytimeForecastData = Array.from(getDaytimeForecast).map(e => parseInt(e.value, 10));
-            let getNightTimeForecast = document.querySelectorAll('[name=nightTimeResourceForecast]');
-            let nightTimeForecastData = Array.from(getNightTimeForecast).map(e => parseInt(e.value, 10));
-            
-            employeeResourceForecast = daytimeForecastData.map((daytimeForecastData,i) => {
-                return [daytimeForecastData,nightTimeForecastData[i]];
-            });
-            
-            console.log("employeeResourceForecast", employeeResourceForecast)
-            this.employeeResourceForecast = employeeResourceForecast
         },
         delEmployee: function(e) {
             this.saveData();
@@ -226,11 +207,13 @@ Vue.component('input-shifttable-list', {
 Vue.component('result-shift-table', {
     data() {
         return {
-            resultShiftTable: '各班別 PT 需求人數與 可選用職員'
+            resultShiftTable: '各班別 PT 需求人數與 可選用職員',
+            employeeResourceForecast: [],
         }
     },
     template:
     `<section>
+        <button v-on:click='makeFTresourceTable()' type="button" class="btn btn-info" id="makeFTresourceTable">輸出PT需求人數與人員</button>
         <h2>{{ resultShiftTable }}</h2>
         <div class="table-responsive">
             <table class="table table-sm table-hover" id="resultShiftTable">
@@ -256,7 +239,26 @@ Vue.component('result-shift-table', {
                 </tbody>
             </table>
         </div>
-    </section>`
+    </section>`,
+    methods: {
+        makeFTresourceTable(){
+            this.makeResourceForecast(this.employeeResourceForecast);
+            mainFunction(this.employeeResourceForecast);
+        },
+        makeResourceForecast(employeeResourceForecast){
+            let getDaytimeForecast = document.querySelectorAll('[name=dayTimeResourceForecast]');
+            let daytimeForecastData = Array.from(getDaytimeForecast).map(e => parseInt(e.value, 10));
+            let getNightTimeForecast = document.querySelectorAll('[name=nightTimeResourceForecast]');
+            let nightTimeForecastData = Array.from(getNightTimeForecast).map(e => parseInt(e.value, 10));
+            
+            employeeResourceForecast = daytimeForecastData.map((daytimeForecastData,i) => {
+                return [daytimeForecastData,nightTimeForecastData[i]];
+            });
+            
+            console.log("employeeResourceForecast", employeeResourceForecast)
+            this.employeeResourceForecast = employeeResourceForecast
+        },
+    }
 })
 
 var app = new Vue({
