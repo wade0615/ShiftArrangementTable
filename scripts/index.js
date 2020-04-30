@@ -3,12 +3,12 @@
 // makeFTresourceTable.addEventListener('click', mainFunction)
 
 // 主程式：
-function mainFunction(employeeResourceForecast){
+function mainFunction(employeeResourceForecast,PT_Data){
     console.log('I am in')
     // 建立預估人力陣列
     // employeeResourceForecast = makeResourceForecast(employeeResourceForecast);
     // 建立 PT 的資料
-    PT_Data = buildPT_Data(PT_Data);
+    // PT_Data = buildPT_Data(PT_Data);
     
     //建立一個新data，將布林值轉換成各員工代號
     let PT_Data_InName = PT_Data_ToName(PT_Data);
@@ -128,13 +128,13 @@ let lastInput = employee.length - 1;
 // };
 
 // 建立PT資料
-let PT_Data = [];
+// let PT_Data = [];
 
 // 依照 DOM 表單輸入的值，建立 PT 的資料
 function buildPT_Data(PT_Data){
     employee = document.querySelectorAll('#inputShiftTable tbody tr');
 
-    PT_Data = Array.from(employee).map(e => {
+    return PT_Data = Array.from(employee).map(e => {
         let daySchedule = e.querySelectorAll('[name=daySchedule]');
         let nightSchedule = e.querySelectorAll('[name=nightSchedule]');
         dayScheduleData = Array.from(daySchedule).map(e => e.checked === true ? 1 : 0);
@@ -142,12 +142,11 @@ function buildPT_Data(PT_Data){
         let schedule = dayScheduleData.map((dayScheduleData,i) => [dayScheduleData,nightScheduleData[i]]);
         return {
             code: e.querySelector('[name=PTCode]').value,
-            schedule: schedule,
             jobType: e.querySelector('[name=jobType]').value,
-            rank: e.querySelector('[name=rank]').value
+            rank: e.querySelector('[name=rank]').value,
+            schedule: schedule,
         }
     });
-    return PT_Data
 };
 
 // 將 PT_Data 上班日的布林值轉換成各員工代號

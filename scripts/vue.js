@@ -209,6 +209,7 @@ Vue.component('result-shift-table', {
         return {
             resultShiftTable: '各班別 PT 需求人數與 可選用職員',
             employeeResourceForecast: [],
+            PT_datas: [],
         }
     },
     template:
@@ -242,21 +243,36 @@ Vue.component('result-shift-table', {
     </section>`,
     methods: {
         makeFTresourceTable(){
-            this.makeResourceForecast(this.employeeResourceForecast);
-            mainFunction(this.employeeResourceForecast);
+            this.makeResourceForecast();
+            this.buildPT_Data();
+            mainFunction(this.employeeResourceForecast,this.PT_datas);
         },
-        makeResourceForecast(employeeResourceForecast){
+        makeResourceForecast(){
             let getDaytimeForecast = document.querySelectorAll('[name=dayTimeResourceForecast]');
             let daytimeForecastData = Array.from(getDaytimeForecast).map(e => parseInt(e.value, 10));
             let getNightTimeForecast = document.querySelectorAll('[name=nightTimeResourceForecast]');
             let nightTimeForecastData = Array.from(getNightTimeForecast).map(e => parseInt(e.value, 10));
             
-            employeeResourceForecast = daytimeForecastData.map((daytimeForecastData,i) => {
+            this.employeeResourceForecast = daytimeForecastData.map((daytimeForecastData,i) => {
                 return [daytimeForecastData,nightTimeForecastData[i]];
             });
-            
-            console.log("employeeResourceForecast", employeeResourceForecast)
-            this.employeeResourceForecast = employeeResourceForecast
+        },
+        buildPT_Data(){
+            employee = document.querySelectorAll('#inputShiftTable tbody tr');
+        
+            this.PT_datas = Array.from(employee).map(e => {
+                let daySchedule = e.querySelectorAll('[name=daySchedule]');
+                let nightSchedule = e.querySelectorAll('[name=nightSchedule]');
+                dayScheduleData = Array.from(daySchedule).map(e => e.checked === true ? 1 : 0);
+                nightScheduleData = Array.from(nightSchedule).map(e => e.checked === true ? 1 : 0);
+                let schedule = dayScheduleData.map((dayScheduleData,i) => [dayScheduleData,nightScheduleData[i]]);
+                return {
+                    code: e.querySelector('[name=PTCode]').value,
+                    jobType: e.querySelector('[name=jobType]').value,
+                    rank: e.querySelector('[name=rank]').value,
+                    schedule: schedule,
+                }
+            });
         },
     }
 })
