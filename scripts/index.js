@@ -23,10 +23,10 @@ function mainFunction(PT_NeededOnDuty){
     // createListElement();
 
     // 在結果班表中的 早 班班表區放入PT需求人數與可用人員
-    createDaytimeShiftTable(PT_NeededOnDuty);
+    // createDaytimeShiftTable(PT_NeededOnDuty);
 
     // 在結果班表中的 晚 班班表區放入PT需求人數與可用人員
-    createNighttimeShiftTable(PT_NeededOnDuty);
+    // createNighttimeShiftTable(PT_NeededOnDuty);
 
     // // 現階段先得知每天需要多少PT，跟有誰可以上班
     // FT_NeededPerDay(PT_Data);
@@ -51,9 +51,9 @@ function mainFunction(PT_NeededOnDuty){
 // };
 
 // 宣告輸入欄位 DOM 元素
-let inputList = document.querySelector('#inputShiftTable tbody');
-let employee = document.querySelectorAll('#inputShiftTable tbody tr');
-let lastInput = employee.length - 1;
+// let inputList = document.querySelector('#inputShiftTable tbody');
+// let employee = document.querySelectorAll('#inputShiftTable tbody tr');
+// let lastInput = employee.length - 1;
 // let lastInputCode = employee[lastInput].querySelector('[name=PTCode]');
 
 // 點擊按鈕新增欄位
@@ -178,29 +178,29 @@ let lastInput = employee.length - 1;
 // };
 
 // 在結果班表中的 早 班班表區放入PT需求人數與可用人員
-function createDaytimeShiftTable(PT_NeededOnDuty){
-    const dayTitle = document.querySelector('#resultShiftTable #dayShiftTable th');
-    dayTitle.innerHTML = '早班 PT';
-    const dayList = document.querySelectorAll('#resultShiftTable #dayShiftTable td');
-    dayList.forEach((e,index) => {
-        e.innerHTML = `${PT_NeededOnDuty[index][0].Needed}<br>${PT_NeededOnDuty[index][0].canDuty}`;
-    });
-};
+// function createDaytimeShiftTable(PT_NeededOnDuty){
+//     const dayTitle = document.querySelector('#resultShiftTable #dayShiftTable th');
+//     dayTitle.innerHTML = '早班 PT';
+//     const dayList = document.querySelectorAll('#resultShiftTable #dayShiftTable td');
+//     dayList.forEach((e,index) => {
+//         e.innerHTML = `${PT_NeededOnDuty[index][0].Needed}<br>${PT_NeededOnDuty[index][0].canDuty}`;
+//     });
+// };
 
 // 在結果班表中的 晚 班班表區放入PT需求人數與可用人員
-function createNighttimeShiftTable(PT_NeededOnDuty){
-    const nightTitle = document.querySelector('#resultShiftTable #nightShiftTable th');
-    nightTitle.innerHTML = '晚班 PT';
-    const nightList = document.querySelectorAll('#resultShiftTable #nightShiftTable td');
-    nightList.forEach((e,index) => {
-        e.innerHTML = `${PT_NeededOnDuty[index][1].Needed}<br>${PT_NeededOnDuty[index][1].canDuty}`;
-    });
-};
+// function createNighttimeShiftTable(PT_NeededOnDuty){
+//     const nightTitle = document.querySelector('#resultShiftTable #nightShiftTable th');
+//     nightTitle.innerHTML = '晚班 PT';
+//     const nightList = document.querySelectorAll('#resultShiftTable #nightShiftTable td');
+//     nightList.forEach((e,index) => {
+//         e.innerHTML = `${PT_NeededOnDuty[index][1].Needed}<br>${PT_NeededOnDuty[index][1].canDuty}`;
+//     });
+// };
 
 
 // 每日人力需求預測////////////////////////////////////////////
 
-function FT_NeededPerDay(){
+// function FT_NeededPerDay(){
     // //建立一個新data，將布林值轉換成各員工代號
     // PT_Data_InName = PT_Data_ToName(PT_Data);
     // // PT人力需求預測
@@ -215,7 +215,7 @@ function FT_NeededPerDay(){
 
     // console.log("PT_NeededOnDuty", PT_NeededOnDuty)
     // console.log("PT_NeededOnDuty", PT_NeededOnDuty2)
-};
+// };
 
 // 整理邏輯
 // 若早晚人員相同，隨機取一位給晚班，剩餘人員早班

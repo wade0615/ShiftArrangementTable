@@ -251,7 +251,9 @@ Vue.component('result-shift-table', {
             this.ptDataInName = this.PTDataToName(this.ptDatas);
             this.ptNeededOnDuty = this.listPTonDutyTable(this.ptResourceForecast,this.ptDataInName);
             this.createListElement();
-            mainFunction(this.ptNeededOnDuty);
+            this.createDaytimeShiftTable(this.ptNeededOnDuty);
+            this.createNighttimeShiftTable(this.ptNeededOnDuty);
+            // mainFunction(this.ptNeededOnDuty);
         },
         makeResourceForecast(){
             let getDaytimeForecast = document.querySelectorAll('[name=dayTimeResourceForecast]');
@@ -280,7 +282,6 @@ Vue.component('result-shift-table', {
                     schedule: schedule,
                 }
             });
-            console.log('inside',this.ptDatas)
         },
         PTDataToName(e){
             return e.map(data => {
@@ -318,6 +319,22 @@ Vue.component('result-shift-table', {
                 resultShiftTableTr.innerHTML = insideTr;
                 }
             )
+        },
+        createDaytimeShiftTable(ptNeededOnDuty){
+            const dayTitle = document.querySelector('#resultShiftTable #dayShiftTable th');
+            dayTitle.innerHTML = '早班 PT';
+            const dayList = document.querySelectorAll('#resultShiftTable #dayShiftTable td');
+            dayList.forEach((e,index) => {
+                e.innerHTML = `${ptNeededOnDuty[index][0].Needed}<br>${ptNeededOnDuty[index][0].canDuty}`;
+            })
+        },
+        createNighttimeShiftTable(ptNeededOnDuty){
+            const nightTitle = document.querySelector('#resultShiftTable #nightShiftTable th');
+            nightTitle.innerHTML = '晚班 PT';
+            const nightList = document.querySelectorAll('#resultShiftTable #nightShiftTable td');
+            nightList.forEach((e,index) => {
+                e.innerHTML = `${ptNeededOnDuty[index][1].Needed}<br>${ptNeededOnDuty[index][1].canDuty}`;
+            })
         },
     }
 })
