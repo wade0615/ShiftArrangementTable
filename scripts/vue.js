@@ -212,6 +212,7 @@ Vue.component('result-shift-table', {
             ptDatas: [],
             ptDataInName: [],
             ptResourceForecast: [],
+            ptNeededOnDuty: [],
         }
     },
     template:
@@ -248,7 +249,9 @@ Vue.component('result-shift-table', {
             this.makeResourceForecast();
             this.buildPTData();
             this.ptDataInName = this.PTDataToName(this.ptDatas);
-            mainFunction(this.ptResourceForecast,this.ptDataInName);
+            this.ptNeededOnDuty = this.listPTonDutyTable(this.ptResourceForecast,this.ptDataInName);
+            console.log("makeFTresourceTable -> this.ptNeededOnDuty", this.ptNeededOnDuty)
+            mainFunction(this.ptNeededOnDuty);
         },
         makeResourceForecast(){
             let getDaytimeForecast = document.querySelectorAll('[name=dayTimeResourceForecast]');
@@ -290,6 +293,17 @@ Vue.component('result-shift-table', {
                     jobType: data.jobType,
                     rank: data.rank
                 }
+            })
+        },
+        listPTonDutyTable(PT_ResourceForecast,PT_Data_InName) {
+            return PT_ResourceForecast.map((ResourceForecastPerDay,index) => {
+                return ResourceForecastPerDay.map((Shift,idx) => {
+                    PT_onDuty = PT_Data_InName.map(e => e.schedule[index][idx]).join('');
+                    return {
+                        Needed: Shift,
+                        canDuty: PT_onDuty
+                    }
+                })
             })
         },
     }
