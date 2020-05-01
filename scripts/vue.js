@@ -211,6 +211,7 @@ Vue.component('result-shift-table', {
             employeeResourceForecast: [],
             ptDatas: [],
             ptDataInName: [],
+            ptResourceForecast: [],
         }
     },
     template:
@@ -247,7 +248,7 @@ Vue.component('result-shift-table', {
             this.makeResourceForecast();
             this.buildPTData();
             this.ptDataInName = this.PTDataToName(this.ptDatas);
-            mainFunction(this.employeeResourceForecast,this.ptDataInName);
+            mainFunction(this.ptResourceForecast,this.ptDataInName);
         },
         makeResourceForecast(){
             let getDaytimeForecast = document.querySelectorAll('[name=dayTimeResourceForecast]');
@@ -258,6 +259,7 @@ Vue.component('result-shift-table', {
             this.employeeResourceForecast = daytimeForecastData.map((daytimeForecastData,i) => {
                 return [daytimeForecastData,nightTimeForecastData[i]];
             });
+            this.ptResourceForecast = this.employeeResourceForecast.map(dayForecast => dayForecast.map(e => e - 1));
         },
         buildPTData(){
             employee = document.querySelectorAll('#inputShiftTable tbody tr');

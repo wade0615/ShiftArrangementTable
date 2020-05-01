@@ -3,7 +3,7 @@
 // makeFTresourceTable.addEventListener('click', mainFunction)
 
 // 主程式：
-function mainFunction(employeeResourceForecast,PT_Data_InName){
+function mainFunction(PT_ResourceForecast,PT_Data_InName){
     console.log('I am in')
     // 建立預估人力陣列
     // employeeResourceForecast = makeResourceForecast(employeeResourceForecast);
@@ -13,7 +13,7 @@ function mainFunction(employeeResourceForecast,PT_Data_InName){
     //建立一個新data，將布林值轉換成各員工代號
     // let PT_Data_InName = PT_Data_ToName(PT_Data);
     // PT人力需求預測
-    const PT_ResourceForecast = employeeResourceForecast.map(dayForecast => dayForecast.map(e => e - 1));
+    // const PT_ResourceForecast = employeeResourceForecast.map(dayForecast => dayForecast.map(e => e - 1));
     console.log("PT_ResourceForecast", PT_ResourceForecast);
     // 列出 PT 需求人數與可上班人員
     PT_NeededOnDuty = list_PT_onDutyTable(PT_ResourceForecast,PT_Data_InName);
