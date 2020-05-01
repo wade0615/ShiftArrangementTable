@@ -20,7 +20,7 @@ function mainFunction(PT_NeededOnDuty){
     // console.log("PT_NeededOnDuty", PT_NeededOnDuty);
 
     // 在空空的結果列表中<tr>中放入我要放的<th>跟<td>*7
-    createListElement();
+    // createListElement();
 
     // 在結果班表中的 早 班班表區放入PT需求人數與可用人員
     createDaytimeShiftTable(PT_NeededOnDuty);
@@ -165,17 +165,17 @@ let lastInput = employee.length - 1;
 // };
 
 // 列出 PT 需求人數與可上班人員
-function list_PT_onDutyTable(PT_ResourceForecast,PT_Data_InName) {
-    return PT_ResourceForecast.map((ResourceForecastPerDay,index) => {
-        return ResourceForecastPerDay.map((Shift,idx) => {
-            PT_onDuty = PT_Data_InName.map(e => e.schedule[index][idx]).join('');
-            return {
-                Needed: Shift,
-                canDuty: PT_onDuty
-            }
-        })
-    });
-};
+// function list_PT_onDutyTable(PT_ResourceForecast,PT_Data_InName) {
+//     return PT_ResourceForecast.map((ResourceForecastPerDay,index) => {
+//         return ResourceForecastPerDay.map((Shift,idx) => {
+//             PT_onDuty = PT_Data_InName.map(e => e.schedule[index][idx]).join('');
+//             return {
+//                 Needed: Shift,
+//                 canDuty: PT_onDuty
+//             }
+//         })
+//     });
+// };
 
 // 在結果班表中的 早 班班表區放入PT需求人數與可用人員
 function createDaytimeShiftTable(PT_NeededOnDuty){
@@ -373,19 +373,19 @@ function SeparateRanks (employeeData_InName){
 };
 
 // 在空空的<tr>中放入我要放的<th>跟<td>*7
-function createListElement(){
-    const resultShiftTableTr = document.querySelectorAll('#resultShiftTable tbody tr');
-    resultShiftTableTr.forEach(resultShiftTableTr => {
-        var insideTr = [];
-        insideTr.push('<th scope="row"></th>');
-        for(i=0;i<7;i++) {
-            insideTr.push('<td></td>')
-        };
-        insideTr = insideTr.join('')
-        resultShiftTableTr.innerHTML = insideTr;
-        }
-    );
-};
+// function createListElement(){
+//     const resultShiftTableTr = document.querySelectorAll('#resultShiftTable tbody tr');
+//     resultShiftTableTr.forEach(resultShiftTableTr => {
+//         var insideTr = [];
+//         insideTr.push('<th scope="row"></th>');
+//         for(i=0;i<7;i++) {
+//             insideTr.push('<td></td>')
+//         };
+//         insideTr = insideTr.join('')
+//         resultShiftTableTr.innerHTML = insideTr;
+//         }
+//     );
+// };
 
 // 將 shiftTable 大陣列中的senior班表放入DOM表單
 // function createSeniorShiftTable(shiftTable){

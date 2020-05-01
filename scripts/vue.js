@@ -250,7 +250,7 @@ Vue.component('result-shift-table', {
             this.buildPTData();
             this.ptDataInName = this.PTDataToName(this.ptDatas);
             this.ptNeededOnDuty = this.listPTonDutyTable(this.ptResourceForecast,this.ptDataInName);
-            console.log("makeFTresourceTable -> this.ptNeededOnDuty", this.ptNeededOnDuty)
+            this.createListElement();
             mainFunction(this.ptNeededOnDuty);
         },
         makeResourceForecast(){
@@ -305,6 +305,19 @@ Vue.component('result-shift-table', {
                     }
                 })
             })
+        },
+        createListElement(){
+            const resultShiftTableTr = document.querySelectorAll('#resultShiftTable tbody tr');
+            resultShiftTableTr.forEach(resultShiftTableTr => {
+                var insideTr = [];
+                insideTr.push('<th scope="row"></th>');
+                for(i=0;i<7;i++) {
+                    insideTr.push('<td></td>')
+                };
+                insideTr = insideTr.join('')
+                resultShiftTableTr.innerHTML = insideTr;
+                }
+            )
         },
     }
 })
